@@ -1,0 +1,26 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Local env files (storing secrets)
+.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS metadata
+.DS_Store
+Thumbs.db

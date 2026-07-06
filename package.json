@@ -1,0 +1,22 @@
+{
+  "name": "modern-developer-portfolio",
+  "version": "1.0.0",
+  "description": "A premium-quality, performant, and responsive modern developer portfolio.",
+  "main": "js/script.js",
+  "scripts": {
+    "build": "tailwindcss -i css/input.css -o css/style.css --minify",
+    "watch": "tailwindcss -i css/input.css -o css/style.css --watch"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "tailwind",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------
+   DESIGN SYSTEM & MODERN THEME CONFIGURATION (Tailwind v4)
+---------------------------------------------------- */
+@theme {
+  /* 2025 Market-Trend Solid Color Palette
+     Inspired by Linear, Vercel, Supabase, Clerk — no gradients anywhere.
+     Electric Indigo · Vivid Purple · Emerald Green · Rose
+  */
+  --color-accent-indigo: #5b5bd6;   /* Electric Indigo  — primary identity */
+  --color-accent-violet: #9333ea;   /* Vivid Purple     — secondary accent  */
+  --color-accent-cyan:   #10b981;   /* Emerald Green    — fresh/modern CTA  */
+  --color-accent-rose:   #f43f5e;   /* Rose             — energy/highlight  */
+  
+  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float-slow 8s ease-in-out infinite;
+  --animate-marquee-left: marquee-left 25s linear infinite;
+  --animate-blink: blink 0.8s step-end infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-1deg); }
+  }
+  @keyframes marquee-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+}
+
+/* ----------------------------------------------------
+   GLOBAL BASE STYLES
+---------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #030303;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #030303;
+    color: #e5e5e5;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom Slim Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #09090b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+
+  /* Keyboard Focus Rings */
+  :focus-visible {
+    outline: none;
+    ring: 2px solid #8b5cf6;
+    ring-offset: 2px;
+  }
+}
+
+/* ----------------------------------------------------
+   ULTRA-PREMIUM SYSTEM & HOVER EFFECTS
+---------------------------------------------------- */
+@layer utilities {
+  /* Subtle White Grid Overlay on Pitch Black background */
+  .bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  }
+
+  /* Glowing Ambient Backdrops */
+  .glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    opacity: 0.20;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  /* Sleek Glass Card (Thin border with hover glowing gradient border) */
+  .premium-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    padding: 1px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .premium-card:hover {
+    background: #9333ea;            /* solid vivid purple border on hover */
+    box-shadow: 0 30px 60px -15px rgba(147, 51, 234, 0.25);
+    transform: translateY(-4px);
+  }
+
+  .premium-card-inner {
+    background: #09090b;
+    border-radius: calc(1.5rem - 1px);
+    padding: 2rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-col: true;
+    justify-content: space-between;
+    transition: background 0.3s;
+  }
+
+  .premium-card:hover .premium-card-inner {
+    background: #0b0b0f;
+  }
+
+  /* Primary/Secondary Premium Typography */
+  .text-secondary-premium {
+    color: #a78bfa;
+  }
+
+  /* Sticky Navigation bar */
+  .glass-nav {
+    background: rgba(3, 3, 3, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+  }
+
+  /* Nav Links styling */
+  .nav-link {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #a1a1aa;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s;
+    outline: none;
+  }
+
+  .nav-link:hover, .nav-link-active {
+    color: #ffffff;
+  }
+
+  .nav-link:focus, .nav-link:active, .nav-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #9333ea;            /* solid vivid purple underline */
+    transition: width 0.3s;
+    border-radius: 999px;
+  }
+
+  .nav-link:hover::after, .nav-link-active::after {
+    width: 100%;
+  }
+
+  /* Interactive Buttons */
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    background: #5b5bd6;            /* solid electric indigo */
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -10px rgba(91, 91, 214, 0.45);
+  }
+
+  .btn-premium:hover {
+    background: #4a4ac4;            /* slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -5px rgba(91, 91, 214, 0.55);
+  }
+
+  .btn-outline {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Typing Cursor */
+  .typing-cursor::after {
+    content: '|';
+    color: #06b6d4;
+    animation: blink var(--animate-blink);
+    margin-left: 4px;
+    font-weight: 300;
+  }
+
+
+
+
+
+  /* Ripple click effect container */
+  .ripple-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Custom badge formatting */
+  .tech-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    background: #18181b;
+    color: #d4d4d8;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all 0.3s;
+  }
+
+  .tech-badge:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    color: #ffffff;
+  }
+}
+
