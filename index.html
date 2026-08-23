@@ -25,10 +25,10 @@
   <script src="js/script.js?v=3" defer></script>
 </head>
 
-<body class="bg-[#030303] text-neutral-200 font-body overflow-x-hidden antialiased bg-grid-pattern">
+<body class="bg-[#000000] text-[#d4c4b4] font-body overflow-x-hidden antialiased bg-grid-pattern">
 
   <!-- Intro Loader Screen -->
-  <div id="introLoader" class="fixed inset-0 bg-[#030303] z-50 flex items-center justify-center">
+  <div id="introLoader" class="fixed inset-0 bg-[#000000] z-50 flex items-center justify-center">
     <canvas id="loaderCanvas" class="w-full h-full block"></canvas>
   </div>
 
@@ -48,7 +48,7 @@
           class="group flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-accent-violet rounded-md"
           aria-label="Sudhanshu Kumar Portfolio Home">
           <span
-            class="text-lg font-black tracking-tighter text-accent-violet group-hover:scale-105 transition-transform duration-300">
+            class="text-lg font-black tracking-tighter text-[#E1DCC9] group-hover:scale-105 transition-transform duration-300">
             SUDHANSHU
           </span>
         </a>
@@ -61,77 +61,75 @@
           <a href="#projects" class="nav-link">Projects</a>
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
-
-        <!-- Action Toggles -->
-        <div class="flex items-center gap-4">
-
-          <!-- Mobile Menu Toggle -->
-          <button id="mobileMenuToggle"
-            class="md:hidden p-2.5 rounded-xl border border-neutral-800 bg-neutral-900/20 text-neutral-300 hover:text-accent-cyan hover:scale-105 transition-all duration-200 cursor-pointer"
-            aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileDrawer" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-none stroke-current stroke-2"
-              viewBox="0 0 24 24">
-              <path id="hamburgerPath" d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
-            </svg>
-          </button>
-
-        </div>
       </div>
+    </header>
 
-      <!-- Mobile Drawer -->
-      <div id="mobileDrawer"
-        class="fixed top-[65px] right-0 w-full h-[calc(100vh-65px)] glass-nav z-30 translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-start px-8 py-10 gap-6"
-        aria-hidden="true">
-        <nav class="flex flex-col gap-6 text-base font-extrabold uppercase tracking-widest"
-          aria-label="Mobile navigation">
-          <a href="#home"
-            class="mobile-nav-link text-neutral-300 hover:text-accent-cyan py-2 transition-colors">Home</a>
-          <a href="#about"
-            class="mobile-nav-link text-neutral-300 hover:text-accent-cyan py-2 transition-colors">About</a>
-          <a href="#skills"
-            class="mobile-nav-link text-neutral-300 hover:text-accent-cyan py-2 transition-colors">Skills</a>
-          <a href="#projects"
-            class="mobile-nav-link text-neutral-300 hover:text-accent-cyan py-2 transition-colors">Projects</a>
-          <a href="#contact"
-            class="mobile-nav-link text-neutral-300 hover:text-accent-cyan py-2 transition-colors">Contact</a>
-        </nav>
-        <!-- Comment: Replace href with absolute path to resume PDF -->
-        <a href="#" class="mt-8 text-center py-3.5 rounded-xl btn-premium shadow-md ripple-btn text-xs"
-          aria-label="Download Resume (Mobile)">
-          Download Resume
-        </a>
-      </div>
+    <!-- ==========================================
+       FLOATING MOBILE BOTTOM NAVIGATION BAR
+    =========================================== -->
+    <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden flex items-center justify-around w-[90vw] max-w-xs px-2 py-2.5 rounded-full border border-[#412D15]/80 bg-[#0d0905]/92 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.9)]" aria-label="Mobile bottom navigation">
+      <a href="#home" class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-[#c0b3a3] hover:text-[#E1DCC9] active:text-white transition-all text-[9px] font-bold uppercase tracking-wider gap-1" aria-label="Home">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#about" class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-[#c0b3a3] hover:text-[#E1DCC9] active:text-white transition-all text-[9px] font-bold uppercase tracking-wider gap-1" aria-label="About">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+        <span>About</span>
+      </a>
+      <a href="#skills" class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-[#c0b3a3] hover:text-[#E1DCC9] active:text-white transition-all text-[9px] font-bold uppercase tracking-wider gap-1" aria-label="Skills">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+        </svg>
+        <span>Skills</span>
+      </a>
+      <a href="#projects" class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-[#c0b3a3] hover:text-[#E1DCC9] active:text-white transition-all text-[9px] font-bold uppercase tracking-wider gap-1" aria-label="Projects">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 012.25 10.875v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM2.25 16.125c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75z" />
+        </svg>
+        <span>Projects</span>
+      </a>
+      <a href="#contact" class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-[#c0b3a3] hover:text-[#E1DCC9] active:text-white transition-all text-[9px] font-bold uppercase tracking-wider gap-1" aria-label="Contact">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        <span>Contact</span>
+      </a>
+    </nav>
     </header>
 
     <!-- ==========================================
        HERO BANNER SECTION
   =========================================== -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-28 pb-16 px-6 relative overflow-hidden"
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 relative overflow-hidden"
       aria-label="Sudhanshu Kumar Hero section">
 
       <!-- Neon Lighting Ambient Glows -->
-      <div class="glow-orb top-1/10 left-1/10 w-96 h-96 bg-accent-indigo/10"></div>
-      <div class="glow-orb bottom-1/10 right-1/10 w-96 h-96 bg-accent-cyan/10"></div>
+      <div class="glow-orb top-1/10 left-1/10 w-72 h-72 sm:w-96 sm:h-96 bg-accent-indigo/10"></div>
+      <div class="glow-orb bottom-1/10 right-1/10 w-72 h-72 sm:w-96 sm:h-96 bg-accent-cyan/10"></div>
 
-      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
 
-        <!-- Left: Introduction Typography -->
-        <div class="lg:col-span-7 flex flex-col items-start gap-6 text-left order-2 lg:order-1">
+        <!-- Introduction Typography -->
+        <div class="lg:col-span-12 flex flex-col items-start gap-5 sm:gap-6 text-left">
           <span class="text-[10px] font-extrabold uppercase tracking-widest text-accent-cyan flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-ping"></span>
             Available for Internships & Projects
           </span>
 
           <div class="flex flex-col gap-2">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-white leading-none">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter text-white leading-none">
               SUDHANSHU<br>
               <span class="text-secondary-premium">KUMAR</span>
             </h1>
 
-            <!-- Typing Carousel Badge -->
+            <!-- Subtitle Badge -->
             <div
-              class="text-lg md:text-2xl font-bold tracking-tight text-accent-cyan min-h-[1.75rem] md:min-h-[2.25rem]">
-              <span id="typedSubtitle" class="typing-cursor"></span>
+              class="text-base sm:text-lg md:text-2xl font-bold tracking-tight text-accent-cyan">
+              <span>Full Stack Developer &amp; Open Source Contributor</span>
             </div>
           </div>
 
@@ -141,8 +139,8 @@
           </p>
 
           <!-- Action Links -->
-          <div class="flex flex-wrap items-center gap-4 mt-2">
-            <a href="#contact" class="btn-premium hover-lift ripple-btn flex items-center gap-2">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-2 w-full sm:w-auto">
+            <a href="#contact" class="btn-premium hover-lift ripple-btn flex items-center justify-center gap-2 w-full sm:w-auto text-center">
               Let's Talk
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-3"
                 viewBox="0 0 24 24">
@@ -150,7 +148,7 @@
               </svg>
             </a>
             <!-- Comment: Update resume link (e.g. assets/resume.pdf) -->
-            <a href="#" class="btn-outline hover-lift ripple-btn flex items-center gap-2"
+            <a href="#" class="btn-outline hover-lift ripple-btn flex items-center justify-center gap-2 w-full sm:w-auto text-center"
               aria-label="Download Sudhanshu Kumar PDF Resume">
               Resume
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-3"
@@ -162,14 +160,6 @@
           </div>
         </div>
 
-        <!-- Right: Technical Constellation Canvas (Option C) -->
-        <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
-          <div class="relative w-full max-w-md aspect-square select-none animate-float group">
-            <!-- Canvas container -->
-            <canvas id="constellationCanvas" class="w-full h-full block bg-transparent"></canvas>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -177,14 +167,14 @@
     <!-- ==========================================
        ABOUT & ACADEMICS SECTION
   =========================================== -->
-    <section id="about" class="py-32 px-6 max-w-7xl mx-auto scroll-mt-12" aria-label="About Sudhanshu Kumar">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <section id="about" class="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto scroll-mt-12" aria-label="About Sudhanshu Kumar">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
         <!-- Giant Heading Left -->
-        <div class="lg:col-span-5 flex flex-col items-start gap-4">
+        <div class="lg:col-span-5 flex flex-col items-start gap-3 sm:gap-4">
           <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ SUMMARY & EDUCATION
             ]</span>
-          <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white leading-none">
             THE ROAD TO<br>
             DEVELOPMENT
           </h2>
@@ -193,31 +183,36 @@
 
         <!-- Biography Content Right -->
         <div class="lg:col-span-7 flex flex-col gap-6">
-          <p class="text-sm md:text-base text-neutral-400 leading-relaxed font-light">
-            I am an aspiring Full Stack Developer specializing in the MERN ecosystem. With B.Tech coursework focused on
-            distributed data structures, relational schemas, and web compilation, I enjoy turning algorithmic problems
-            into functional browser platforms.
+          <p class="text-xs sm:text-sm md:text-base text-neutral-400 leading-relaxed font-light">
+            Aspiring Full Stack Developer with hands-on experience building scalable web applications using React.js,
+            Next.js, Node.js, JavaScript, and MongoDB. Experienced in developing secure REST APIs, implementing
+            authentication, integrating third-party services, and delivering responsive, maintainable web applications.
           </p>
 
           <!-- University Card (Clean Border Box) -->
-          <div class="p-6 md:p-8 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 flex flex-col gap-4">
+          <div class="p-5 sm:p-6 md:p-8 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 flex flex-col gap-4">
             <div class="flex flex-wrap items-center justify-between gap-2">
-              <h4 class="font-extrabold text-white text-base">Bachelor of Technology in Computer Science</h4>
+              <h4 class="font-extrabold text-white text-sm sm:text-base">Bachelor of Technology in Computer Science</h4>
               <span
                 class="text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded bg-accent-indigo/10 text-accent-cyan">Expected
                 July 2027</span>
             </div>
             <div>
-              <p class="text-xs font-bold text-zinc-300">Dr. A. P. J. Abdul Kalam Technical University</p>
+              <p class="text-xs font-bold text-zinc-300">Dr. A. P. J. Abdul Kalam Technical University <span
+                  class="text-accent-cyan font-mono font-normal ml-2">CGPA: 8.2</span></p>
               <p class="text-[10px] text-neutral-500 font-semibold mt-0.5">Greater Noida, Uttar Pradesh</p>
+            </div>
+            <div class="pt-2 border-t border-zinc-800/60 text-[11px] text-neutral-400 font-mono">
+              <span class="text-zinc-500 font-bold">Coursework:</span> Data Structures and Algorithms (C++), Full Stack
+              Development (MERN)
             </div>
           </div>
 
           <!-- Achievements & Activities -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
 
             <!-- Achievement Card -->
-            <div class="p-5 rounded-2xl border border-zinc-900 bg-zinc-900/10 flex flex-col gap-3">
+            <div class="p-4 sm:p-5 rounded-2xl border border-zinc-900 bg-zinc-900/10 flex flex-col gap-3">
               <div class="text-accent-cyan">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
                   viewBox="0 0 24 24">
@@ -228,14 +223,14 @@
               <div>
                 <h5 class="text-xs font-bold text-white uppercase tracking-wider">WCHL 2025 Qualifier</h5>
                 <p class="text-[10px] text-neutral-400 mt-1 leading-relaxed font-light">
-                  Qualified for the Regional Round of the World Computer Hacker League 2025 competitive hackathon
-                  ecosystem.
+                  Regional Round Qualifier in World Computer Hacker League 2025. Recognized for innovation and problem
+                  solving.
                 </p>
               </div>
             </div>
 
             <!-- Leadership Card -->
-            <div class="p-5 rounded-2xl border border-zinc-900 bg-zinc-900/10 flex flex-col gap-3">
+            <div class="p-4 sm:p-5 rounded-2xl border border-zinc-900 bg-zinc-900/10 flex flex-col gap-3">
               <div class="text-accent-rose">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
                   viewBox="0 0 24 24">
@@ -244,9 +239,9 @@
                 </svg>
               </div>
               <div>
-                <h5 class="text-xs font-bold text-white uppercase tracking-wider">Hackathon Organizer</h5>
+                <h5 class="text-xs font-bold text-white uppercase tracking-wider">Hackamania Organizer</h5>
                 <p class="text-[10px] text-neutral-400 mt-1 leading-relaxed font-light">
-                  Assisted in coordinating logistical arrangements for an 8-hour Microsoft Gurugram developer hackathon.
+                  Organized and managed Hackamania, an 8-hour hackathon hosted by TheElites at Microsoft, Gurugram.
                 </p>
               </div>
             </div>
@@ -261,17 +256,17 @@
     <!-- ==========================================
        SKILLS SECTION (HOVER GLOW TILES)
   =========================================== -->
-    <section id="skills" class="py-32 px-6 max-w-7xl mx-auto scroll-mt-12"
+    <section id="skills" class="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto scroll-mt-12"
       aria-label="Sudhanshu Kumar Skill Categories">
 
-      <div class="text-center mb-16">
+      <div class="text-center mb-10 md:mb-16">
         <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ CORE CAPABILITIES ]</span>
-        <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">TECHNICAL SKILLS</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">TECHNICAL SKILLS</h2>
         <div class="w-12 h-1 bg-accent-violet mx-auto rounded-full"></div>
       </div>
 
-      <!-- Skills Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Skills Grid (6 Categories from Resume) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
         <!-- Languages Card -->
         <div class="premium-card">
@@ -281,15 +276,16 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
                   viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M10.5 21a.75.75 0 01-.75-.75V3.75a.75.75 0 011.5 0v16.5a.75.75 0 01-.75.75zM3.75 10.5a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75z" />
+                    d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
                 </svg>
                 <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">Languages</h3>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="tech-badge">C++</span>
                 <span class="tech-badge">JavaScript</span>
-                <span class="tech-badge">HTML5</span>
-                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">HTML</span>
+                <span class="tech-badge">CSS</span>
+                <span class="tech-badge">C++</span>
               </div>
             </div>
           </div>
@@ -310,9 +306,7 @@
               <div class="flex flex-wrap gap-2">
                 <span class="tech-badge">React.js</span>
                 <span class="tech-badge">Next.js</span>
-                <span class="tech-badge">Redux</span>
                 <span class="tech-badge">Tailwind CSS</span>
-                <span class="tech-badge">Responsive</span>
               </div>
             </div>
           </div>
@@ -326,7 +320,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
                   viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                    d="M5.25 14.25h13.5m-13.5 4.5h13.5m-13.5-9h13.5m-13.5-4.5h13.5" />
                 </svg>
                 <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">Backend</h3>
               </div>
@@ -334,13 +328,57 @@
                 <span class="tech-badge">Node.js</span>
                 <span class="tech-badge">Express.js</span>
                 <span class="tech-badge">REST APIs</span>
-                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">JWT</span>
+                <span class="tech-badge">Zod</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Tools Card -->
+        <!-- Database Card -->
+        <div class="premium-card">
+          <div class="premium-card-inner">
+            <div class="flex flex-col gap-6">
+              <div class="flex items-center gap-3 text-accent-emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                </svg>
+                <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">Database</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Supabase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI/ML Card -->
+        <div class="premium-card">
+          <div class="premium-card-inner">
+            <div class="flex flex-col gap-6">
+              <div class="flex items-center gap-3 text-accent-indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+                </svg>
+                <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">AI / ML Integration</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-badge">Grok API</span>
+                <span class="tech-badge">Gemini API</span>
+                <span class="tech-badge">LLM Integration</span>
+                <span class="tech-badge">Prompt Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developer Tools Card -->
         <div class="premium-card">
           <div class="premium-card-inner">
             <div class="flex flex-col gap-6">
@@ -350,14 +388,14 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M11.42 15.17L17.25 21A2.67 2.67 0 0021 17.25l-5.83-5.83m-3.75 3.75L3 7.5A2.67 2.67 0 016.75 3.75l7.5 7.5m-2.83 2.83L6.75 8.25m4.67 4.67v-3.5" />
                 </svg>
-                <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">Tools & Concepts</h3>
+                <h3 class="font-extrabold text-[11px] uppercase tracking-wider text-white">Developer Tools</h3>
               </div>
               <div class="flex flex-wrap gap-2">
                 <span class="tech-badge">Git & GitHub</span>
-                <span class="tech-badge">VS Code</span>
                 <span class="tech-badge">Postman</span>
-                <span class="tech-badge">DSA</span>
-                <span class="tech-badge">localStorage</span>
+                <span class="tech-badge">VS Code</span>
+                <span class="tech-badge">Vercel</span>
+                <span class="tech-badge">Cloudinary</span>
               </div>
             </div>
           </div>
@@ -369,140 +407,123 @@
     <!-- ==========================================
        PROJECTS GRID SECTION
   =========================================== -->
-    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto scroll-mt-12"
+    <section id="projects" class="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto scroll-mt-12"
       aria-label="Sudhanshu Kumar Featured Projects">
 
-      <div class="text-center mb-16">
-        <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ MY CREATIVE CODE ]</span>
-        <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">FEATURED PROJECTS</h2>
+      <div class="text-center mb-10 md:mb-16">
+        <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ FEATURED WORK ]</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">FEATURED PROJECTS</h2>
         <div class="w-12 h-1 bg-accent-violet mx-auto rounded-full"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
 
-        <!-- Project 1: Task Manager -->
+        <!-- Project 1: Gohyred -->
         <article class="premium-card scroll-reveal">
           <div class="premium-card-inner">
             <div class="flex flex-col gap-6">
               <!-- Mock Editor Header -->
               <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
-                <span class="font-mono text-[10px] text-zinc-500">// project_01.js</span>
+                <span class="font-mono text-[10px] text-zinc-500">// gohyred.ts</span>
                 <span
-                  class="text-[8px] font-extrabold uppercase bg-accent-indigo/10 text-accent-cyan px-2 py-0.5 rounded">Vanilla
-                  JS App</span>
+                  class="text-[8px] font-extrabold uppercase bg-accent-indigo/10 text-accent-cyan px-2 py-0.5 rounded">Live
+                  Platform</span>
               </div>
 
               <div>
-                <h3 class="text-2xl font-extrabold text-white tracking-tight mb-2">FocusTask Manager</h3>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-2">Gohyred</h3>
                 <p class="text-xs text-neutral-400 leading-relaxed font-light mb-6">
-                  A task tracking web application utilizing vanilla JavaScript. Supports tasks creation, modification,
-                  deleting, and status checks. Features dynamic DOM updates and persistent state management via browser
-                  storage.
+                  Built and deployed an AI-powered job discovery platform used by 500+ users, integrating resume parsing
+                  to surface relevant openings across company career pages and external job portals.
                 </p>
 
                 <!-- Features bullet list -->
                 <ul class="text-[10px] text-zinc-400 flex flex-col gap-1.5 mb-6 font-mono">
                   <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-indigo"></span>
-                    Dynamic
-                    DOM updates without page reloads</li>
+                    Job aggregation pipeline normalized & deduplicated 20,000+ job listings</li>
                   <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-indigo"></span>
-                    localStorage session persistence</li>
+                    Skill-based job matching algorithm ranks listings against parsed resume skills</li>
                   <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-indigo"></span>
-                    Accessible layout focus indicators</li>
+                    Secure Supabase authentication and personalized resume-based job feeds</li>
                 </ul>
 
-                <!-- Comment: Placeholder img element required by specifications is hidden -->
-                <img class="hidden" src=""
-                  alt="Screenshot mockup of the FocusTask Manager web application layout showing checklist states"
-                  loading="lazy">
-
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-badge">HTML5</span>
-                  <span class="tech-badge">CSS3</span>
-                  <span class="tech-badge">JavaScript</span>
-                  <span class="tech-badge">Git</span>
+                  <span class="tech-badge">Next.js</span>
+                  <span class="tech-badge">TypeScript</span>
+                  <span class="tech-badge">React</span>
+                  <span class="tech-badge">PostgreSQL</span>
+                  <span class="tech-badge">Supabase</span>
+                  <span class="tech-badge">Tailwind CSS</span>
+                  <span class="tech-badge">REST APIs</span>
                 </div>
               </div>
 
               <!-- Links -->
               <div class="flex gap-4 border-t border-zinc-800 pt-6">
-                <!-- Comment: Replace href with actual github project link -->
-                <a href="https://github.com/Sudhanshuukr/task-manager-js.git" target="_blank" rel="noopener noreferrer"
-                  class="flex-1 text-center py-2.5 rounded-xl border border-zinc-800 hover:border-accent-violet text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
-                  aria-label="View Task Manager code on GitHub">
-                  GitHub
-                </a>
-                <!-- Comment: Replace href with actual live demo link -->
-                <a href="https://sudhanshuukr.github.io/task-manager-js/" target="_blank" rel="noopener noreferrer"
-                  class="flex-1 text-center py-2.5 rounded-xl btn-premium text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
-                  aria-label="View Task Manager Live Demo">
-                  Live Demo
+                <a href="https://gohyred.com" target="_blank" rel="noopener noreferrer"
+                  class="w-full text-center py-2.5 rounded-xl btn-premium text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                  aria-label="View Gohyred Live Website">
+                  Live Website
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2.5"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
                 </a>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- Project 2: Expense Tracker -->
+        <!-- Project 2: Resumly -->
         <article class="premium-card scroll-reveal">
           <div class="premium-card-inner">
             <div class="flex flex-col gap-6">
               <!-- Mock Editor Header -->
               <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
-                <span class="font-mono text-[10px] text-zinc-500">// project_02.js</span>
+                <span class="font-mono text-[10px] text-zinc-500">// resumly.ts</span>
                 <span
-                  class="text-[8px] font-extrabold uppercase bg-accent-cyan/10 text-accent-cyan px-2 py-0.5 rounded">Financial
-                  Utility</span>
+                  class="text-[8px] font-extrabold uppercase bg-accent-cyan/10 text-accent-cyan px-2 py-0.5 rounded">Live
+                  AI App</span>
               </div>
 
               <div>
-                <h3 class="text-2xl font-extrabold text-white tracking-tight mb-2">Expense Tracker Console</h3>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-2">Resumly</h3>
                 <p class="text-xs text-neutral-400 leading-relaxed font-light mb-6">
-                  A real-time financial tracking dashboard enabling users to input credits/debits, monitor dynamic
-                  balance
-                  summaries, and modify transactional entries. Fully built utilizing JavaScript localStorage data
-                  storage
-                  logic.
+                  Built a full-stack AI resume summarizer generating Professional, ATS, and Executive summaries via Grok
+                  API, supporting PDF and DOCX uploads up to 5MB.
                 </p>
 
                 <!-- Features bullet list -->
                 <ul class="text-[10px] text-zinc-400 flex flex-col gap-1.5 mb-6 font-mono">
-                  <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-cyan"></span> Full
-                    CRUD
-                    transactions modifications</li>
-                  <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-cyan"></span> Live
-                    client-side balances calculation</li>
                   <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-cyan"></span>
-                    Tabulated
-                    data sorting filters</li>
+                    Cookie-based free tier permitting 3 anonymous summaries before login</li>
+                  <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-cyan"></span> Handled
+                    10+ edge cases (corrupted files, bad formats) with server-side validation</li>
+                  <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-accent-cyan"></span> Scalable
+                    architecture supporting summary history & premium subscriptions</li>
                 </ul>
 
-                <!-- Comment: Placeholder img element required by specifications is hidden -->
-                <img class="hidden" src=""
-                  alt="Screenshot mockup of the Expense Tracker application displaying transactional log tables and cash logs"
-                  loading="lazy">
-
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-badge">HTML5</span>
-                  <span class="tech-badge">CSS3</span>
-                  <span class="tech-badge">JavaScript</span>
-                  <span class="tech-badge">Git</span>
+                  <span class="tech-badge">Next.js</span>
+                  <span class="tech-badge">TypeScript</span>
+                  <span class="tech-badge">Tailwind CSS</span>
+                  <span class="tech-badge">Node.js</span>
+                  <span class="tech-badge">Grok API</span>
                 </div>
               </div>
 
               <!-- Links -->
               <div class="flex gap-4 border-t border-zinc-800 pt-6">
-                <!-- Comment: Replace href with actual github project link -->
-                <a href="https://github.com/Sudhanshuukr/Expense-Tracker.git" target="_blank" rel="noopener noreferrer"
-                  class="flex-1 text-center py-2.5 rounded-xl border border-zinc-800 hover:border-accent-violet text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
-                  aria-label="View Expense Tracker code on GitHub">
-                  GitHub
-                </a>
-                <!-- Comment: Replace href with actual live demo link -->
-                <a href="https://sudhanshuukr.github.io/Expense-Tracker/" target="_blank" rel="noopener noreferrer"
-                  class="flex-1 text-center py-2.5 rounded-xl btn-premium text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
-                  aria-label="View Expense Tracker Live Demo">
-                  Live Demo
+                <a href="https://resumly-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="w-full text-center py-2.5 rounded-xl btn-premium text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                  aria-label="View Resumly Live Website">
+                  Live Website
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2.5"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
                 </a>
               </div>
             </div>
@@ -516,45 +537,44 @@
     <!-- ==========================================
        SERVICES SECTION
   =========================================== -->
-    <section class="py-32 px-6 max-w-7xl mx-auto border-t border-zinc-900/50" aria-label="Services offered">
+    <section class="py-16 md:py-32 px-4 md:px-6 max-w-7xl mx-auto border-t border-zinc-900/50" aria-label="Services offered">
 
-      <div class="text-center mb-16">
+      <div class="text-center mb-10 md:mb-16">
         <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ OFFERINGS ]</span>
-        <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">WHAT I DO</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">WHAT I DO</h2>
         <div class="w-12 h-1 bg-accent-violet mx-auto rounded-full"></div>
       </div>
 
       <!-- Services Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
 
-        <!-- Card 1 -->
-        <div class="p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
-          <span class="text-2xl font-black text-zinc-800">01</span>
-          <h3 class="text-lg font-bold text-white uppercase tracking-tight">Frontend Development</h3>
+        <!-- Service 1: Frontend -->
+        <div class="p-5 sm:p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
+          <span class="text-3xl font-black text-[#E1DCC9] opacity-80">01</span>
+          <h3 class="text-base sm:text-lg font-bold text-white uppercase tracking-tight">Frontend Engineering</h3>
           <p class="text-xs text-neutral-400 leading-relaxed font-light">
-            Creating fluid, accessible user interfaces using React.js, Tailwind CSS, and Next.js. Focused on performance
-            audits and modular layouts.
+            Building responsive, high-performance web applications using React.js, Next.js, and Tailwind CSS. Focused on
+            clean UI architecture and WCAG accessibility standards.
           </p>
         </div>
 
-        <!-- Card 2 -->
-        <div class="p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
-          <span class="text-2xl font-black text-zinc-800">02</span>
-          <h3 class="text-lg font-bold text-white uppercase tracking-tight">API Integration</h3>
+        <!-- Service 2: Backend -->
+        <div class="p-5 sm:p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
+          <span class="text-3xl font-black text-[#E1DCC9] opacity-80">02</span>
+          <h3 class="text-base sm:text-lg font-bold text-white uppercase tracking-tight">Backend Development & APIs</h3>
           <p class="text-xs text-neutral-400 leading-relaxed font-light">
-            Developing RESTful backend connections using Node.js and Express.js, connecting application routing logic
-            with
-            clean database architectures.
+            Designing secure, scalable backend services and REST APIs with Node.js and Express.js. Implementing JWT
+            authentication, Zod request validation, and robust error handling.
           </p>
         </div>
 
-        <!-- Card 3 -->
-        <div class="p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
-          <span class="text-2xl font-black text-zinc-800">03</span>
-          <h3 class="text-lg font-bold text-white uppercase tracking-tight">Database Schemas</h3>
+        <!-- Service 3: Databases & AI -->
+        <div class="p-5 sm:p-6 md:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/30 flex flex-col gap-5">
+          <span class="text-3xl font-black text-[#E1DCC9] opacity-80">03</span>
+          <h3 class="text-base sm:text-lg font-bold text-white uppercase tracking-tight">Databases & AI Integration</h3>
           <p class="text-xs text-neutral-400 leading-relaxed font-light">
-            Structuring MongoDB document schemas and index optimizations. Focused on query integrity and browser
-            localStorage synchronization layers.
+            Architecting relational and document databases with PostgreSQL, Supabase, and MongoDB. Integrating Grok API
+            & Gemini LLMs to surface intelligent user features.
           </p>
         </div>
 
@@ -564,33 +584,33 @@
     <!-- ==========================================
        CONTACT SECTION
   =========================================== -->
-    <section id="contact" class="pt-32 pb-8 px-6 max-w-7xl mx-auto scroll-mt-12"
+    <section id="contact" class="pt-16 md:pt-32 pb-24 md:pb-8 px-4 md:px-6 max-w-7xl mx-auto scroll-mt-12"
       aria-label="Sudhanshu Kumar Contact Section">
 
-      <div class="text-center mb-16">
+      <div class="text-center mb-10 md:mb-16">
         <span class="text-[9px] font-extrabold uppercase tracking-widest text-accent-cyan">[ INQUIRIES ]</span>
-        <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">GET IN TOUCH</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white mt-2 mb-3">GET IN TOUCH</h2>
         <div class="w-12 h-1 bg-accent-violet mx-auto rounded-full"></div>
       </div>
 
-      <div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-12">
-        <div class="flex flex-col items-center gap-4 max-w-2xl">
-          <h3 class="text-3xl font-extrabold text-white tracking-tight leading-none">Let's build something epic.</h3>
+      <div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-8 md:gap-12">
+        <div class="flex flex-col items-center gap-3 sm:gap-4 max-w-2xl">
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">Let's build something epic.</h3>
           <p class="text-xs md:text-sm text-neutral-400 leading-relaxed font-light">
-            I am looking for internship opportunities or open projects where I can contribute MERN stack features.
-            Feel free to reach out via email or connect on my professional networks.
+            I am looking for internship opportunities or open projects where I can contribute MERN stack & full-stack
+            features. Feel free to reach out via email or connect on my professional networks.
           </p>
         </div>
 
         <!-- Contact Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full mt-4 sm:mt-6">
 
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sudhanshukr388@gmail.com" target="_blank"
-            rel="noopener noreferrer"
-            class="p-6 rounded-2xl border border-zinc-900 bg-zinc-900/20 hover:border-accent-indigo hover:scale-105 transition-all duration-300 flex flex-col items-center text-center gap-4 group">
+          <!-- Direct Email -->
+          <a href="mailto:itssudhanshuu@gmail.com" target="_blank" rel="noopener noreferrer"
+            class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 hover:border-zinc-700 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 group">
             <div
-              class="p-4 rounded-xl bg-accent-indigo/10 text-accent-indigo group-hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current fill-none stroke-2"
+              class="p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-400 group-hover:text-white group-hover:border-zinc-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -599,43 +619,48 @@
             <div>
               <span class="text-[9px] uppercase font-bold text-neutral-500 block mb-1">Direct Email</span>
               <span
-                class="text-xs font-bold text-white group-hover:text-accent-indigo transition-colors">sudhanshukr388@gmail.com</span>
+                class="text-xs font-bold text-white group-hover:text-accent-indigo transition-colors break-all">itssudhanshuu@gmail.com</span>
             </div>
           </a>
 
           <!-- LinkedIn Detail -->
-          <a href="https://linkedin.com/in/sudhanshu-kumar-9a5687247" target="_blank" rel="noopener noreferrer"
-            class="p-6 rounded-2xl border border-zinc-900 bg-zinc-900/20 hover:border-accent-violet hover:scale-105 transition-all duration-300 flex flex-col items-center text-center gap-4 group">
+          <a href="https://linkedin.com/in/sudhanshuukr" target="_blank" rel="noopener noreferrer"
+            class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 hover:border-zinc-700 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 group">
             <div
-              class="p-4 rounded-xl bg-accent-violet/10 text-accent-violet group-hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              class="p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-400 group-hover:text-white group-hover:border-zinc-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path
                   d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </div>
             <div class="flex flex-col items-center justify-center gap-1">
               <span class="text-[9px] uppercase font-bold text-neutral-500">LinkedIn</span>
+              <span
+                class="text-xs font-bold text-white group-hover:text-accent-indigo transition-colors">sudhanshuukr</span>
             </div>
           </a>
 
           <!-- GitHub Detail -->
           <a href="https://github.com/sudhanshuukr" target="_blank" rel="noopener noreferrer"
-            class="p-6 rounded-2xl border border-zinc-900 bg-zinc-900/20 hover:border-accent-cyan hover:scale-105 transition-all duration-300 flex flex-col items-center text-center gap-4 group">
-            <div class="p-4 rounded-xl bg-accent-cyan/10 text-accent-cyan group-hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 hover:border-zinc-700 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 group">
+            <div
+              class="p-2.5 rounded-xl border border-zinc-800 bg-zinc-900/60 text-zinc-400 group-hover:text-white group-hover:border-zinc-700 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path
                   d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
               </svg>
             </div>
             <div class="flex flex-col items-center justify-center gap-1">
               <span class="text-[9px] uppercase font-bold text-neutral-500">GitHub</span>
+              <span
+                class="text-xs font-bold text-white group-hover:text-accent-indigo transition-colors">sudhanshuukr</span>
             </div>
           </a>
 
         </div>
 
         <!-- Location Badge -->
-        <div class="mt-6 flex items-center gap-2 text-neutral-500 text-[10px] font-bold uppercase tracking-wider">
+        <div class="mt-4 flex items-center gap-2 text-neutral-500 text-[10px] font-bold uppercase tracking-wider">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -647,21 +672,22 @@
       </div>
     </section>
 
-    <footer class="relative mt-6 border-t border-zinc-900/60 py-8 px-6 overflow-hidden"
+    <footer class="relative mt-6 border-t border-zinc-900/60 py-8 pb-28 md:pb-8 px-4 sm:px-6 overflow-hidden"
       aria-label="Sitemap and social connections">
 
       <!-- Subtle top accent glow -->
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-accent-violet opacity-30 blur-sm"></div>
 
-      <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-1.5 relative z-10 text-neutral-500 text-[11px] text-center">
+      <div
+        class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-1.5 relative z-10 text-neutral-500 text-[11px] text-center">
         <div class="tracking-wide">
-          <span class="font-bold uppercase text-zinc-300">SUDHANSHU KUMAR</span> &bull; Build with heart and coffee.
+          <span class="font-bold uppercase text-zinc-300">SUDHANSHU KUMAR</span> &bull; Built with heart & code.
         </div>
       </div>
 
-      <!-- Back to Top Button -->
+      <!-- Back to Top Button (Desktop Only) -->
       <button id="backToTop"
-        class="fixed bottom-6 right-6 p-3 rounded-full btn-premium text-white shadow-lg opacity-0 translate-y-6 hover:scale-105 active:scale-95 transition-all duration-300 pointer-events-none z-30 flex items-center justify-center cursor-pointer"
+        class="hidden md:flex fixed bottom-6 right-6 p-3 rounded-full bg-[#1F150C] border border-[#412D15] text-[#E1DCC9] hover:text-white hover:bg-[#412D15] shadow-2xl opacity-0 translate-y-6 hover:scale-105 active:scale-95 transition-all duration-300 pointer-events-none z-40 items-center justify-center cursor-pointer"
         aria-label="Scroll page back to the top" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-none stroke-current stroke-2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
