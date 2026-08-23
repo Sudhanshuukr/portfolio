@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lCtx = loaderCanvas.getContext('2d');
     let lWidth = window.innerWidth;
     let lHeight = window.innerHeight;
-    
+
     // Scale canvas for retina display
     const dpr = window.devicePixelRatio || 1;
     loaderCanvas.width = lWidth * dpr;
@@ -67,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render text on offscreen canvas to scan pixel data
     const offscreenCanvas = document.createElement('canvas');
     const offscreenCtx = offscreenCanvas.getContext('2d');
-    
+
     // Set offscreen canvas dimension
     offscreenCanvas.width = 600;
     offscreenCanvas.height = 150;
-    
+
     offscreenCtx.fillStyle = '#000000';
     offscreenCtx.fillRect(0, 0, 600, 150);
-    
+
     // Use the primary visual font family 'Outfit' or fallback sans-serif
     offscreenCtx.fillStyle = '#ffffff';
     offscreenCtx.font = '900 68px Outfit, sans-serif';
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Loop runs indefinitely to maintain twinkling background on canvas
 
       lCtx.clearRect(0, 0, lWidth, lHeight);
-      
+
       // Update viewport center dynamically
       centerPoint.x = lWidth / 2;
       centerPoint.y = lHeight / 2;
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (phaseTimer >= 90) {
           phase = 2;
           phaseTimer = 0;
-          
+
           // Trigger the page reveal and push canvas to background of home section only
           if (introLoader) {
             introLoader.style.backgroundColor = 'transparent';
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Interpolate toward random scatter coordinates
             p.x += (p.targetX - p.x) * 0.035 * speedFactor;
             p.y += (p.targetY - p.y) * 0.035 * speedFactor;
-            
+
             // Linear interpolate opacity down
             const opacityProgress = Math.min(1, phaseTimer / 120);
             p.alpha = p.initialAlpha + (p.finalAlpha - p.initialAlpha) * opacityProgress;
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Drift background stars
             p.x += p.vx * speedFactor;
             p.y += p.vy * speedFactor;
-            
+
             // Wrap around edges
             if (p.x < 0) p.x = lWidth;
             if (p.x > lWidth) p.x = 0;
@@ -272,13 +272,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (phaseTimer >= 360) {
           phase = 3;
           phaseTimer = 0;
-          
+
           // Freeze final positions
           particles.forEach(p => {
             p.vx = 0;
             p.vy = 0;
           });
-          
+
           // Clean up DOM wrapper of loader since it is now transparent
           if (introLoader) {
             introLoader.style.pointerEvents = 'none';
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply twinkling variations
         // Text stars twinkle stably; background stars twinkle softly
         const twinkleFactor = p.isText && phase < 2 ? 0.18 : 0.25;
-        const currentAlpha = Math.max(0, Math.min(1, p.alpha * ( (1 - twinkleFactor) + Math.sin(phaseTimer * p.twinkleSpeed + p.twinkleOffset) * twinkleFactor )));
+        const currentAlpha = Math.max(0, Math.min(1, p.alpha * ((1 - twinkleFactor) + Math.sin(phaseTimer * p.twinkleSpeed + p.twinkleOffset) * twinkleFactor)));
 
         lCtx.beginPath();
         lCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // HELPER FUNCTIONS & DEBOUNCING
   // ==========================================
-  
+
   /**
    * Debounces continuous event calls (like scroll or resize) to prevent rendering thread congestion.
    * @param {Function} func - Function to execute
@@ -343,12 +343,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // THEME SWITCHER (DARK / LIGHT MODE)
   // ==========================================
   const themeToggleBtn = document.getElementById('themeToggle');
-  
+
   // Initialize theme setup based on local storage or system preference
   const initTheme = () => {
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
       document.documentElement.classList.add('dark');
     } else {
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', toggleTheme);
   }
-  
+
   // Listen for operating system theme changes in real-time
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
@@ -394,10 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toggleMobileMenu = () => {
     const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
-    
+
     mobileToggle.setAttribute('aria-expanded', !isOpen);
     mobileDrawer.setAttribute('aria-hidden', isOpen);
-    
+
     if (!isOpen) {
       // Open state: Slide in drawer and transform hamburger lines into an 'X'
       mobileDrawer.classList.remove('translate-x-full');
@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Full Stack Developer',
     'Open Source Contributor'
   ];
-  
+
   let roleIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const handleTyping = () => {
     const currentRole = roles[roleIndex];
-    
+
     if (isDeleting) {
       // Remove character
       typedSubtitle.textContent = currentRole.substring(0, charIndex - 1);
@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // INTERSECTION OBSERVER: ANIMATE ON SCROLL (FADE IN/UP)
   // ==========================================
   const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-  
+
   // Set starting state in JS to ensure CSS styles gracefully degrade if JS is disabled
   scrollRevealElements.forEach(el => {
     el.classList.add('opacity-0', 'translate-y-6', 'transition-all', 'duration-700', 'ease-out');
@@ -643,21 +643,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const rippleButtons = document.querySelectorAll('.ripple-btn');
 
   rippleButtons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', function (e) {
       // Create element
       const ripple = document.createElement('span');
       ripple.classList.add('ripple-effect');
-      
+
       // Calculate coordinates relative to clicked button
       const rect = this.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
-      
+
       this.appendChild(ripple);
-      
+
       // Clean up ripple element from DOM
       setTimeout(() => {
         ripple.remove();
@@ -673,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = constellationCanvas.getContext('2d');
     let width = constellationCanvas.offsetWidth;
     let height = constellationCanvas.offsetHeight;
-    
+
     // Set high-DPI canvas size
     const resizeConstellation = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -683,10 +683,10 @@ document.addEventListener('DOMContentLoaded', () => {
       constellationCanvas.height = height * dpr;
       ctx.scale(dpr, dpr);
     };
-    
+
     resizeConstellation();
     window.addEventListener('resize', resizeConstellation);
-    
+
     // Tech nodes data
     const techs = [
       { name: 'React', color: '#06b6d4' },
@@ -698,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'Tailwind', color: '#38bdf8' },
       { name: 'Git', color: '#f43f5e' }
     ];
-    
+
     const nodes = techs.map(tech => ({
       name: tech.name,
       color: tech.color,
@@ -709,29 +709,29 @@ document.addEventListener('DOMContentLoaded', () => {
       radius: 4,
       pulse: Math.random() * Math.PI
     }));
-    
+
     let cMouse = { x: null, y: null, active: false };
-    
+
     constellationCanvas.addEventListener('mousemove', (e) => {
       const rect = constellationCanvas.getBoundingClientRect();
       cMouse.x = e.clientX - rect.left;
       cMouse.y = e.clientY - rect.top;
       cMouse.active = true;
     });
-    
+
     constellationCanvas.addEventListener('mouseleave', () => {
       cMouse.active = false;
     });
-    
+
     const drawConstellation = () => {
       ctx.clearRect(0, 0, width, height);
-      
+
       // Update and draw nodes
       nodes.forEach(node => {
         // Measure text width to calculate dynamic safety boundaries
         ctx.font = '600 12px Inter, sans-serif';
         const textWidth = ctx.measureText(node.name).width;
-        
+
         const minX = 10;
         const maxX = width - textWidth - 20; // 12px text offset + width + padding
         const minY = 15;
@@ -740,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Move nodes
         node.x += node.vx;
         node.y += node.vy;
-        
+
         // Gentle attraction to mouse
         if (cMouse.active) {
           const dx = cMouse.x - node.x;
@@ -760,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
           node.x = maxX;
           node.vx = -Math.abs(node.vx);
         }
-        
+
         if (node.y < minY) {
           node.y = minY;
           node.vy = Math.abs(node.vy);
@@ -768,37 +768,37 @@ document.addEventListener('DOMContentLoaded', () => {
           node.y = maxY;
           node.vy = -Math.abs(node.vy);
         }
-        
+
         // Pulse radius slightly
         node.pulse += 0.02;
         const currentRadius = node.radius + Math.sin(node.pulse) * 1.5;
-        
+
         // Draw glow path
         ctx.beginPath();
         ctx.arc(node.x, node.y, currentRadius + 4, 0, Math.PI * 2);
         ctx.fillStyle = node.color + '1a'; // 10% opacity
         ctx.fill();
-        
+
         // Draw core node
         ctx.beginPath();
         ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
         ctx.fillStyle = node.color;
         ctx.fill();
-        
+
         // Draw Text Label
         ctx.font = '600 12px Inter, sans-serif';
         ctx.fillStyle = '#e4e4e7';
         ctx.textAlign = 'left';
         ctx.fillText(node.name, node.x + 12, node.y + 4);
       });
-      
+
       // Draw links between nodes
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (dist < 100) {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -811,35 +811,35 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      
+
       // Draw links from mouse to nearby nodes
       if (cMouse.active) {
         nodes.forEach(node => {
           const dx = cMouse.x - node.x;
           const dy = cMouse.y - node.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (dist < 150) {
             ctx.beginPath();
             ctx.moveTo(cMouse.x, cMouse.y);
             ctx.lineTo(node.x, node.y);
-            
+
             // Draw a gradient line from mouse (indigo/cyan) to node color
             const grad = ctx.createLinearGradient(cMouse.x, cMouse.y, node.x, node.y);
             const alpha = (1 - dist / 150) * 0.35;
             grad.addColorStop(0, `rgba(99, 102, 241, ${alpha})`);
             grad.addColorStop(1, node.color + Math.floor(alpha * 255).toString(16).padStart(2, '0'));
-            
+
             ctx.strokeStyle = grad;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
         });
       }
-      
+
       requestAnimationFrame(drawConstellation);
     };
-    
+
     drawConstellation();
   }
 
@@ -852,24 +852,24 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < starCount; i++) {
       const star = document.createElement('div');
       star.className = 'star';
-      
+
       // Random position
       star.style.left = `${Math.random() * 100}%`;
       star.style.top = `${Math.random() * 100}%`;
-      
+
       // Random size (1px to 3px)
       const size = Math.random() * 2 + 1;
       star.style.width = `${size}px`;
       star.style.height = `${size}px`;
-      
+
       // Random animation duration (2.5s to 5.5s)
       const duration = Math.random() * 3 + 2.5;
       star.style.animationDuration = `${duration}s`;
-      
+
       // Random animation delay (0s to 5s)
       const delay = Math.random() * 5;
       star.style.animationDelay = `${delay}s`;
-      
+
       galaxyStars.appendChild(star);
     }
   }

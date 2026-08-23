@@ -90,15 +90,21 @@
   }
 
   /* High contrast text color overrides for warm dark theme */
-  .text-neutral-400, .text-zinc-400 {
+  .text-neutral-400,
+  .text-zinc-400 {
     color: #E1DCC9 !important;
   }
-  .text-neutral-500, .text-zinc-500 {
+
+  .text-neutral-500,
+  .text-zinc-500 {
     color: #D4C6B6 !important;
   }
-  .text-zinc-300, .text-neutral-300 {
+
+  .text-zinc-300,
+  .text-neutral-300 {
     color: #F4EFE6 !important;
   }
+
   .text-neutral-200 {
     color: #F4EFE6 !important;
   }

@@ -114,7 +114,7 @@
       <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
 
         <!-- Introduction Typography -->
-        <div class="lg:col-span-12 flex flex-col items-start gap-5 sm:gap-6 text-left">
+        <div class="lg:col-span-7 flex flex-col items-start gap-5 sm:gap-6 text-left order-1">
           <span class="text-[10px] font-extrabold uppercase tracking-widest text-accent-cyan flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-ping"></span>
             Available for Internships & Projects
@@ -157,6 +157,14 @@
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
             </a>
+          </div>
+        </div>
+
+        <!-- Right: Technical Constellation Canvas -->
+        <div class="hidden lg:flex lg:col-span-5 justify-center order-2">
+          <div class="relative w-full max-w-md aspect-square select-none animate-float group">
+            <!-- Canvas container -->
+            <canvas id="constellationCanvas" class="w-full h-full block bg-transparent"></canvas>
           </div>
         </div>
 
