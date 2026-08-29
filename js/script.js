@@ -61,38 +61,62 @@ document.addEventListener('DOMContentLoaded', () => {
       loaderCanvas.width = lWidth * dpr;
       loaderCanvas.height = lHeight * dpr;
       lCtx.scale(dpr, dpr);
+      centerPoint.x = lWidth / 2;
+      centerPoint.y = lHeight / 2;
     };
     window.addEventListener('resize', handleResize);
+
+    // Calculate responsive font size for "SUDHANSHU" based on viewport width
+    // Base desktop font size is 68px (text width ~500px)
+    const baseFontSize = 68;
+    // Leave at least 28px total horizontal margin on small screens
+    const maxAvailableWidth = Math.min(520, lWidth - 28);
+
+    // Measure at base font size to calculate exact scaling factor
+    const testCanvas = document.createElement('canvas');
+    const testCtx = testCanvas.getContext('2d');
+    testCtx.font = `900 ${baseFontSize}px Outfit, sans-serif`;
+    const measuredBaseWidth = testCtx.measureText('SUDHANSHU').width || 500;
+
+    let actualFontSize = baseFontSize;
+    if (measuredBaseWidth > maxAvailableWidth) {
+      actualFontSize = Math.max(26, Math.floor(baseFontSize * (maxAvailableWidth / measuredBaseWidth)));
+    }
 
     // Render text on offscreen canvas to scan pixel data
     const offscreenCanvas = document.createElement('canvas');
     const offscreenCtx = offscreenCanvas.getContext('2d');
 
-    // Set offscreen canvas dimension
-    offscreenCanvas.width = 600;
-    offscreenCanvas.height = 150;
+    const offW = Math.ceil(maxAvailableWidth + 60);
+    const offH = Math.ceil(actualFontSize * 2.2);
+    const offCenterX = Math.floor(offW / 2);
+    const offCenterY = Math.floor(offH / 2);
 
-    offscreenCtx.fillStyle = '#000000';
-    offscreenCtx.fillRect(0, 0, 600, 150);
+    offscreenCanvas.width = offW;
+    offscreenCanvas.height = offH;
+
+    offscreenCtx.fillStyle = '#0a0e17';
+    offscreenCtx.fillRect(0, 0, offW, offH);
 
     // Use the primary visual font family 'Outfit' or fallback sans-serif
     offscreenCtx.fillStyle = '#ffffff';
-    offscreenCtx.font = '900 68px Outfit, sans-serif';
+    offscreenCtx.font = `900 ${actualFontSize}px Outfit, sans-serif`;
     offscreenCtx.textAlign = 'center';
     offscreenCtx.textBaseline = 'middle';
-    offscreenCtx.fillText('SUDHANSHU', 300, 75);
+    offscreenCtx.fillText('SUDHANSHU', offCenterX, offCenterY);
 
     // Scan pixel data
-    const imgData = offscreenCtx.getImageData(0, 0, 600, 150).data;
+    const imgData = offscreenCtx.getImageData(0, 0, offW, offH).data;
     const targetPoints = [];
-    const step = 4; // Scan spacing to control particle count (4 = denser/bolder text without extra brightness)
+    // Dynamic scan step: 3 for smaller mobile font sizes for crisp definition, 4 for desktop
+    const step = actualFontSize < 45 ? 3 : 4;
 
-    for (let y = 0; y < 150; y += step) {
-      for (let x = 0; x < 600; x += step) {
-        const index = (y * 600 + x) * 4;
+    for (let y = 0; y < offH; y += step) {
+      for (let x = 0; x < offW; x += step) {
+        const index = (y * offW + x) * 4;
         // Check if pixel is white (text pixel)
         if (imgData[index] > 200) {
-          targetPoints.push({ x: x - 300, y: y - 75 }); // Center coordinate system
+          targetPoints.push({ x: x - offCenterX, y: y - offCenterY }); // Center coordinate system
         }
       }
     }
@@ -120,7 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Initialize glowing text particles
+    // Initialize glowing text particles (dynamically scaled for smaller screens)
+    const particleScale = actualFontSize < 45 ? 0.75 : 1.0;
     const textParticles = targetPoints.map(pt => {
       const startX = Math.random() * lWidth;
       const startY = Math.random() * lHeight;
@@ -132,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startY: startY,
         x: startX,
         y: startY,
-        size: Math.random() * 0.9 + 0.7, // Slightly larger (0.7px to 1.6px) for bolder text appearance
+        size: (Math.random() * 0.9 + 0.7) * particleScale, // Responsive dot sizing
         alpha: 0, // Starts at 0 for soft fade-in
         targetAlpha: Math.random() * 0.15 + 0.70, // Softer 0.70 to 0.85 opacity
         color: '#ffffff', // White stars only
@@ -452,12 +477,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 1. Sticky Header shadow class addition
       if (header) {
-        if (scrollTop > 20) {
-          header.classList.add('glass-nav', 'shadow-md');
+        if (scrollTop > 10) {
+          header.classList.add('glass-nav');
           header.querySelector('div').classList.remove('py-4');
           header.querySelector('div').classList.add('py-3');
         } else {
-          header.classList.remove('glass-nav', 'shadow-md');
+          header.classList.remove('glass-nav');
           header.querySelector('div').classList.remove('py-3');
           header.querySelector('div').classList.add('py-4');
         }
@@ -479,6 +504,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fire once immediately so header reflects current scroll on load/refresh
   handleScroll();
   window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Set current copyright year dynamically
+  const yearEl = document.getElementById('currentYear');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 
   // Back to top scroll execution
   if (backToTopBtn) {
@@ -692,10 +723,10 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'React', color: '#06b6d4' },
       { name: 'Node.js', color: '#10b981' },
       { name: 'MongoDB', color: '#10b981' },
-      { name: 'Express', color: '#8b5cf6' },
+      { name: 'Express', color: '#818cf8' },
       { name: 'C++', color: '#6366f1' },
-      { name: 'JavaScript', color: '#eab308' },
-      { name: 'Tailwind', color: '#38bdf8' },
+      { name: 'JavaScript', color: '#38bdf8' },
+      { name: 'Tailwind', color: '#06b6d4' },
       { name: 'Git', color: '#f43f5e' }
     ];
 
