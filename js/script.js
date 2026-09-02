@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // If the page is refreshed while scrolled to any other section (#about,
   // #skills, #projects, #contact) we skip the animation entirely and jump
   // straight to that section with a normal interface.
-  const _hash = window.location.hash.toLowerCase();
-  const _isHome = _hash === '' || _hash === '#home';
+  const _rawHash = window.location.hash.toLowerCase();
+  const _targetId = _rawHash.startsWith('#') ? _rawHash.slice(1) : '';
+  const _isHome = !_targetId || _targetId === 'home';
 
   if (!_isHome) {
     // Instantly bypass loader and reveal the page
@@ -33,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (appContent) {
       appContent.classList.remove('opacity-0', 'pointer-events-none');
     }
-    // Scroll to the correct section after the browser has painted the page
-    const _targetSection = document.querySelector(_hash);
+    // Safely retrieve section by ID without risking CSS selector injection or syntax crash
+    const _targetSection = document.getElementById(_targetId);
     if (_targetSection) {
       requestAnimationFrame(() => {
         _targetSection.scrollIntoView({ behavior: 'instant' });
