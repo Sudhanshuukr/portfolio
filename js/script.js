@@ -473,8 +473,6 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => {
       _rafPending = false;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
 
       // 1. Sticky Header shadow class addition
       if (header) {
@@ -499,6 +497,9 @@ document.addEventListener('DOMContentLoaded', () => {
           backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
         }
       }
+
+      // 3. Continuously synchronize active navigation state on manual scroll
+      updateActiveSectionOnScroll();
     });
   };
 
@@ -520,19 +521,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // INTERSECTION OBSERVER: SCROLL SPY (ACTIVE LINKS)
+  // SCROLL-SPY ACTIVE SECTION INDICATOR ENGINE
   // ==========================================
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const trackedSectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
+  const trackedSections = trackedSectionIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const desktopNavLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-bottom-link');
   let isClickScrolling = false;
   let clickScrollTimeout = null;
+  let currentActiveSectionId = null;
 
-  // Immediately set the correct active nav link from the URL hash so there
-  // is zero flash-of-wrong-active-state on page refresh.
-  const initNavActiveState = () => {
-    const currentHash = window.location.hash || '#home';
-    navLinks.forEach(link => {
-      if (link.getAttribute('href') === currentHash) {
+  // Single source of truth for active section state across desktop & mobile
+  function setActiveSection(sectionId) {
+    if (!sectionId || sectionId === currentActiveSectionId) return;
+    currentActiveSectionId = sectionId;
+
+    // 1. Desktop navigation links (Indigo accent + underline)
+    desktopNavLinks.forEach(link => {
+      if (link.getAttribute('href') === `#${sectionId}`) {
         link.classList.add('nav-link-active');
         link.setAttribute('aria-current', 'page');
       } else {
@@ -540,61 +548,159 @@ document.addEventListener('DOMContentLoaded', () => {
         link.removeAttribute('aria-current');
       }
     });
+
+    // 2. Mobile bottom navigation links (Cyan #22D3EE accent + thin cyan underline)
+    mobileNavLinks.forEach(link => {
+      if (link.getAttribute('href') === `#${sectionId}`) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // Pure geometric scroll-spy: computes active section from 30% viewport focal reference
+  function updateActiveSectionOnScroll() {
+    if (isClickScrolling) return;
+
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const maxScroll = scrollHeight - viewportHeight;
+
+    // 1. Genuine Top Boundary: Home is ONLY active when genuinely near the top of the page
+    if (scrollTop <= 60) {
+      setActiveSection('home');
+      return;
+    }
+
+    // 2. Genuine Bottom Boundary: Contact activates when reaching bottom of page,
+    // even if shorter than the viewport or other sections
+    if (maxScroll > 0 && scrollTop >= maxScroll - 60) {
+      setActiveSection('contact');
+      return;
+    }
+
+    // 3. Viewport focal reference line at 30% from the top of the viewport
+    const focalPoint = viewportHeight * 0.3;
+
+    let bestSectionId = null;
+    let minDistance = Infinity;
+
+    for (let i = 0; i < trackedSections.length; i++) {
+      const section = trackedSections[i];
+      const rect = section.getBoundingClientRect();
+
+      // If section actively spans across the 30% focal line: exact match
+      if (rect.top <= focalPoint && rect.bottom >= focalPoint) {
+        bestSectionId = section.id;
+        minDistance = 0;
+        break;
+      }
+
+      // If user is in a gap or between sections, measure distance to the nearest section boundary
+      let dist;
+      if (rect.top > focalPoint) {
+        dist = rect.top - focalPoint;
+      } else {
+        dist = focalPoint - rect.bottom;
+      }
+
+      // Home should only be active at genuine top of page, never chosen via distance fallback mid-page
+      if (section.id === 'home' && scrollTop > 150) {
+        continue;
+      }
+
+      if (dist < minDistance) {
+        minDistance = dist;
+        bestSectionId = section.id;
+      }
+    }
+
+    if (bestSectionId) {
+      setActiveSection(bestSectionId);
+    }
+  }
+
+  // Immediately set the initial active link from URL hash or current scroll position
+  const initNavActiveState = () => {
+    const rawHash = window.location.hash.toLowerCase();
+    const targetId = rawHash.startsWith('#') ? rawHash.slice(1) : '';
+    const initialSection = targetId ? document.getElementById(targetId) : null;
+    if (initialSection) {
+      setActiveSection(targetId);
+    } else {
+      updateActiveSectionOnScroll();
+    }
   };
   initNavActiveState();
 
-  // Attach click listeners to temporarily disable scroll spy updates during smooth scroll
-  navLinks.forEach(link => {
+  // Desktop navigation click handlers
+  desktopNavLinks.forEach(link => {
     link.addEventListener('click', () => {
+      const targetHref = link.getAttribute('href');
+      if (!targetHref || !targetHref.startsWith('#')) return;
+
+      const targetId = targetHref.slice(1);
       isClickScrolling = true;
       clearTimeout(clickScrollTimeout);
 
-      // Instantly highlight only the clicked link
-      navLinks.forEach(l => {
-        if (l === link) {
-          l.classList.add('nav-link-active');
-          l.setAttribute('aria-current', 'page');
-        } else {
-          l.classList.remove('nav-link-active');
-          l.removeAttribute('aria-current');
-        }
-      });
+      setActiveSection(targetId);
 
-      // Mute scroll spy until smooth scroll completes (approx 800ms)
       clickScrollTimeout = setTimeout(() => {
         isClickScrolling = false;
+        updateActiveSectionOnScroll();
       }, 800);
     });
   });
 
-  const scrollSpyOptions = {
-    root: null,
-    rootMargin: '-20% 0px -60% 0px', // Target trigger area centered in middle viewport
-    threshold: 0
-  };
+  // Mobile bottom navigation click handlers (smooth scroll + synchronized active state)
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetHref = link.getAttribute('href');
+      if (!targetHref || !targetHref.startsWith('#')) return;
 
-  const scrollSpyCallback = (entries) => {
-    if (isClickScrolling) return;
+      const targetId = targetHref.slice(1);
+      const targetSection = document.getElementById(targetId);
+      if (!targetSection) return;
 
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const activeSectionId = entry.target.getAttribute('id');
+      e.preventDefault();
 
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${activeSectionId}`) {
-            link.classList.add('nav-link-active');
-            link.setAttribute('aria-current', 'page');
-          } else {
-            link.classList.remove('nav-link-active');
-            link.removeAttribute('aria-current');
-          }
-        });
+      isClickScrolling = true;
+      clearTimeout(clickScrollTimeout);
+
+      setActiveSection(targetId);
+
+      // Smooth scroll to target section
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Update URL hash without sudden viewport jumping
+      if (history.pushState) {
+        history.pushState(null, '', targetHref);
       }
-    });
-  };
 
-  const scrollSpyObserver = new IntersectionObserver(scrollSpyCallback, scrollSpyOptions);
-  sections.forEach(section => scrollSpyObserver.observe(section));
+      clickScrollTimeout = setTimeout(() => {
+        isClickScrolling = false;
+        updateActiveSectionOnScroll();
+      }, 800);
+    });
+  });
+
+  // IntersectionObserver to continuously synchronize active section across intersection changes
+  const scrollSpyObserver = new IntersectionObserver(() => {
+    if (!isClickScrolling) {
+      updateActiveSectionOnScroll();
+    }
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1.0] });
+
+  trackedSections.forEach(section => scrollSpyObserver.observe(section));
+
+  // Clean up observer if page unloads or navigates away
+  window.addEventListener('beforeunload', () => {
+    scrollSpyObserver.disconnect();
+  }, { once: true });
 
   // ==========================================
   // TYPING EFFECT (HERO HEADLINE CAROUSEL)

@@ -153,6 +153,65 @@
   }
 }
 
+/* ----------------------------------------------------
+   MOBILE BOTTOM NAVIGATION ACTIVE SECTION INDICATOR
+   Cyan (#22D3EE) accent for active icon & text label,
+   thin cyan underline directly beneath active label,
+   muted grey for inactive items, smooth subtle transitions.
+---------------------------------------------------- */
+.mobile-bottom-link {
+  position: relative;
+  color: #94A3B8;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-bottom-link svg {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-bottom-link:hover {
+  color: #F8FAFC;
+}
+
+.mobile-bottom-link.active,
+.mobile-bottom-link[aria-current="page"] {
+  color: #22D3EE !important;
+}
+
+.mobile-bottom-link.active svg,
+.mobile-bottom-link[aria-current="page"] svg {
+  transform: translateY(-1px);
+}
+
+.mobile-bottom-link .mobile-nav-label {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-bottom-link .mobile-nav-label::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #22D3EE;
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  opacity: 0;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+}
+
+.mobile-bottom-link.active .mobile-nav-label::after,
+.mobile-bottom-link[aria-current="page"] .mobile-nav-label::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
 @utility btn-premium {
   display: inline-flex;
   align-items: center;

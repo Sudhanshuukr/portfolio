@@ -20,10 +20,10 @@
   <link rel="icon" type="image/svg+xml" href="s logo.svg">
 
   <!-- Compiled Tailwind CSS & Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/style.css?v=14">
 
   <!-- Defer JavaScript execution for performance -->
-  <script src="js/script.js?v=13" defer></script>
+  <script src="js/script.js?v=14" defer></script>
 </head>
 
 <body class="bg-[#0a0e17] text-slate-100 font-body overflow-x-hidden antialiased bg-grid-pattern min-h-screen">
@@ -68,53 +68,53 @@
     <!-- ==========================================
        FLOATING MOBILE BOTTOM NAVIGATION BAR
     =========================================== -->
-    <nav
+    <nav id="mobileBottomNav"
       class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden flex items-center justify-around w-[92vw] max-w-xs px-2 py-2 rounded-full border border-white/10 bg-[#0c101c]/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
       aria-label="Mobile bottom navigation">
       <a href="#home"
-        class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white active:text-indigo-400 transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
+        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
         aria-label="Home">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
-        <span>Home</span>
+        <span class="mobile-nav-label">Home</span>
       </a>
       <a href="#about"
-        class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white active:text-indigo-400 transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
+        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
         aria-label="About">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
         </svg>
-        <span>About</span>
+        <span class="mobile-nav-label">About</span>
       </a>
       <a href="#skills"
-        class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white active:text-indigo-400 transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
+        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
         aria-label="Skills">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
         </svg>
-        <span>Skills</span>
+        <span class="mobile-nav-label">Skills</span>
       </a>
       <a href="#projects"
-        class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white active:text-indigo-400 transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
+        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
         aria-label="Projects">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 012.25 10.875v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM2.25 16.125c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75z" />
         </svg>
-        <span>Projects</span>
+        <span class="mobile-nav-label">Projects</span>
       </a>
       <a href="#contact"
-        class="flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white active:text-indigo-400 transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
+        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
         aria-label="Contact">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
         </svg>
-        <span>Contact</span>
+        <span class="mobile-nav-label">Contact</span>
       </a>
     </nav>
 
@@ -154,8 +154,10 @@
           </div>
 
           <p class="text-sm sm:text-base text-slate-400 max-w-lg leading-relaxed font-normal">
-            I build modern, high-performance web experiences using the MERN stack. Currently pursuing my B.Tech in
-            Computer Science, I focus on turning complex technical concepts into clean, functional codebases.
+            I enjoy building web applications that solve real problems, from responsive user interfaces to backend
+            systems and REST APIs. I work with React, Next.js, Node.js, and databases like MongoDB and PostgreSQL,
+            turning ideas into functional products. I'm also interested in open source, exploring new technologies, and
+            constantly improving the way I write and build software.
           </p>
 
           <!-- Action Links -->
@@ -210,9 +212,12 @@
         <!-- Biography Content Right -->
         <div class="lg:col-span-7 flex flex-col gap-6">
           <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-            Aspiring Full Stack Developer with hands-on experience building scalable web applications using React.js,
-            Next.js, Node.js, JavaScript, and MongoDB. Experienced in developing secure REST APIs, implementing
-            authentication, integrating third-party services, and delivering responsive, maintainable web applications.
+            Full Stack Developer experienced in building and deploying full-stack web applications using React.js,
+            Next.js, JavaScript, TypeScript, Node.js, Express.js, and MongoDB. Hands-on experience with REST API
+            development, backend architecture, JWT authentication, Clerk, PostgreSQL, Prisma, and Supabase. Familiar
+            with third-party API integrations, database management, server-side development, Git, GitHub, performance
+            optimization, and deployment using Vercel and Render. Focused on building practical applications with clean,
+            maintainable code and responsive user interfaces.
           </p>
 
           <!-- University Card -->
@@ -229,11 +234,11 @@
                 Dr. A. P. J. Abdul Kalam Technical University
                 <!-- <span class="text-cyan-400 font-semibold font-mono ml-2">CGPA: 8.2</span> -->
               </p>
-              <p class="text-xs text-slate-400 mt-0.5">Greater Noida, Uttar Pradesh</p>
+              <p class="text-xs text-slate-400 mt-0.5">Greater Noida, Uttar Pradesh, India</p>
             </div>
             <div class="pt-3 border-t border-white/[0.06] text-xs text-slate-400">
               <span class="text-slate-300 font-semibold">Coursework:</span> Data Structures &amp; Algorithms (C++), Full
-              Stack Development (MERN)
+              Stack Development
             </div>
           </div>
 
@@ -699,8 +704,10 @@
               <p class="text-xs text-indigo-400 font-semibold tracking-wide mt-0.5 mb-3">AI-Powered Job Discovery Engine
               </p>
               <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Built and deployed an automated job discovery platform used by 500+ users, integrating intelligent
-                resume parsing to surface targeted openings across corporate career portals.
+                Built gohyred, an AI-powered job discovery platform that aggregates openings from company career pages
+                and multiple job boards. It offers resume analysis, skill-based job matching, and a personalized
+                dashboard to save and track jobs. It also features Startup Radar, helping users explore 1,200+ startups
+                across Delhi NCR.
               </p>
             </div>
 
@@ -713,7 +720,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span><strong>500+</strong> active users</span>
+                <span><strong>500+</strong> Active Users</span>
               </div>
               <div class="flex items-center gap-2 text-xs text-slate-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
@@ -721,7 +728,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span><strong>20,000+</strong> jobs indexed</span>
+                <span><strong>20,000+</strong> Jobs Indexed</span>
               </div>
               <div class="flex items-center gap-2 text-xs text-slate-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
@@ -729,7 +736,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Skill-based ranking logic</span>
+                <span><strong>1,200+</strong> Delhi NCR Startups Mapped</span>
               </div>
               <div class="flex items-center gap-2 text-xs text-slate-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
@@ -737,7 +744,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Supabase auth &amp; feeds</span>
+                <span><strong>Multi-source</strong> Job Aggregation</span>
               </div>
             </div>
 
