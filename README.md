@@ -1,6 +1,6 @@
 # Sudhanshu Kumar — Developer Portfolio
 
-Personal developer portfolio for **Sudhanshu Kumar**, Full-Stack Developer and Computer Science undergraduate ('27 Batch). This portfolio showcases real-world web products, engineering capabilities across frontend and backend stacks, technical skills, and contact channels.
+Personal developer portfolio for **Sudhanshu Kumar**, a Full-Stack Web Developer and Computer Science undergraduate ('27 Batch). This portfolio presents verified engineering projects, technical capabilities across modern frontend and backend architectures, categorized skill matrices, and direct communication channels.
 
 🔗 **Live Website:** [https://sudhanshuworks.netlify.app/](https://sudhanshuworks.netlify.app/)  
 📂 **Source Repository:** [https://github.com/Sudhanshuukr/portfolio](https://github.com/Sudhanshuukr/portfolio)
@@ -9,33 +9,47 @@ Personal developer portfolio for **Sudhanshu Kumar**, Full-Stack Developer and C
 
 ## Overview
 
-This portfolio serves as a central hub presenting engineering work, production web applications, technical proficiencies, and contact information. Built with semantic HTML5, modern Tailwind CSS v4, and lightweight vanilla JavaScript, it delivers high performance, responsive design, and strict security standards.
-
----
-
-## Features
-
-- **Modern Warm Ivory & Dark Charcoal Aesthetic** — Distinctive visual identity featuring a warm ivory palette (`#FDF6F0`), dark charcoal typography (`#15191E`), and vibrant orange accents (`#F06D13`).
-- **Interactive Navbar & Accessible Mobile Drawer** — Desktop navigation with active section indicator and external contact link, paired with an accessible full-screen mobile menu with keyboard (ESC) and screen-reader support.
-- **Hero Showcase** — Prominent value proposition with italicized highlight, interactive dual CTAs, a 3D perspective code-editor laptop visual with file tree and floating "Currently Building" card, and professional highlight badges.
-- **Featured Projects Showcase** — Dedicated product showcases with authentic live screenshots:
-  - **gohyred** — AI-Powered Job Discovery Engine with verified metrics (500+ Active Users, 20K+ Jobs Indexed, 1,200+ Delhi Startups Mapped) and comprehensive technology stack logos.
-  - **Resumly** — AI-Powered Resume Summarizer & Analyzer featuring Grok API summary capabilities and full-stack architecture badges.
-- **Categorized Skills Matrix** — Technical skills across Languages, Frontend, Backend, Database, AI/ML, and Tooling.
-- **About & Academic Profile** — Educational background (B.Tech in Computer Science, AKTU) and hackathon achievements.
-- **Direct Resume PDF Download** — Direct download of `Sudhanshu-Kumar-Resume.pdf` from the organized assets directory.
-- **Scroll-Spy & Smooth Navigation** — Active section tracking powered by `IntersectionObserver` with synchronized URL hash handling.
+The portfolio is designed as a focused, high-performance single-page application showcasing production web products, system architecture capabilities, and clean UI engineering. Built with semantic HTML5, modern Tailwind CSS v4, and vanilla JavaScript, it achieves fast load times, WCAG accessibility compliance, and strict defense-in-depth security standards without relying on heavy client frameworks.
 
 ---
 
 ## Tech Stack
 
-| Technology | Purpose |
-| :--- | :--- |
-| **HTML5** | Semantic structure, accessibility landmarks, and accessible ARIA attributes |
-| **Tailwind CSS v4** | Modern utility-first styling compiled via `@tailwindcss/cli` v4 |
-| **Vanilla JavaScript (ES6+)** | Client runtime, mobile drawer state, scroll-spy, and smooth navigation |
-| **Netlify** | Edge CDN hosting with strict Content Security Policy HTTP headers |
+| Domain | Technology | Implementation Details |
+| :--- | :--- | :--- |
+| **Markup** | **HTML5** | Semantic landmarks, accessible ARIA roles, responsive viewport meta |
+| **Styling** | **Tailwind CSS v4** | Utility-first architecture compiled via `@tailwindcss/cli` v4.3.2, custom CSS variables, `@theme` design tokens |
+| **Client Scripting** | **Vanilla JavaScript (ES6+)** | Accessible mobile drawer navigation, `IntersectionObserver` scroll-spy, header scroll transitions, interactive tech tooltips |
+| **Typography** | **Self-Hosted WOFF2 Fonts** | High-performance Brotli-compressed variable fonts (Manrope, Inter, Playfair Display) |
+| **Icons & Assets** | **Vector SVG** | Authentic brand logos for technologies, crisp scalable vector favicon |
+| **Tooling & Build** | **Node.js & NPM** | Build pipeline using `@tailwindcss/cli` for zero-overhead minified production CSS |
+| **Edge & Security** | **Netlify** | Production `_headers` configuration enforcing Content Security Policy (CSP), HSTS, frame protection, and MIME sniffing prevention |
+
+---
+
+## Typography System
+
+The portfolio utilizes a premium three-font typographic hierarchy, self-hosted as local WOFF2 variable fonts to eliminate external network hops and font flicker:
+
+1. **Manrope** (`assets/fonts/manrope-latin.woff2`): Primary typography for brand identity (`SK.`), navigation links, section titles (`h2`), project names, metric statistics, and the contact email.
+2. **Inter** (`assets/fonts/inter-latin.woff2`): Supporting typography for paragraphs, biographies, project descriptions, button labels, tooltips, and footer details.
+3. **Playfair Display** (`assets/fonts/playfair-display-italic-latin.woff2`): High-contrast editorial serif accents applied to italicized keywords (*"ship"* in the hero headline and *"useful"* in About Me).
+
+---
+
+## Features
+
+- **Refined Warm Minimalist Design:** Curated palette featuring warm ivory (`#FDF6F0`), dark charcoal text (`#15191E`), warm card surfaces (`#FEFDFC`), subtle borders (`#F0ECE4`), and vibrant orange accents (`#F06D13`).
+- **Interactive Navigation & Accessible Mobile Drawer:** Fixed desktop navbar with smooth section scrolling, active focal state indicators, and an accessible mobile overlay drawer supporting keyboard navigation (ESC key to dismiss) and screen-reader semantics.
+- **Hero Section:** Personal identity badge (`SUDHANSHU KUMAR / FULL-STACK DEVELOPER`), value proposition headline with editorial serif accent, dual CTAs ("View Projects" and "Download Resume"), floating "Currently Building" card, and custom Windows-style code editor illustration.
+- **Product Highlights Cards:** Quick metric tiles for `3+ Real Projects`, `Product Focused`, and `Open to Opportunities`.
+- **Featured Projects Showcase:** Detailed project cards featuring verified production metrics, authentic UI previews, architecture badges, and direct links:
+  - **gohyred:** AI-Powered Job Discovery Platform (`500+ Active Users`, `20K+ Jobs Indexed`, `1,200+ Delhi Startups Mapped`).
+  - **Resumly:** AI-Powered Resume Summarizer & Analyzer built with full-stack serverless endpoints.
+- **Categorized Technical Skills Toolkit:** Organized matrix displaying authentic brand SVG icons across Languages, Frontend, Backend, Database, and Tooling with responsive tap-and-hover technology labels.
+- **About Me & Academic Profile:** Professional background, software engineering philosophy, B.Tech Computer Science profile ('27 Batch), and verified metrics (`3+ Projects`, `1K+ Active Users Across gohyred`, `End-to-End Product Ownership`).
+- **Contact & Let's Connect:** Balanced two-column contact composition featuring a prominent headline, supporting copy, interactive email pill (`sudhanshuikr388@gmail.com`), social channels (LinkedIn, GitHub, X), and live availability indicator.
+- **Direct Resume Access:** One-click download of the developer resume from `assets/docs/resume.pdf`.
 
 ---
 
@@ -43,64 +57,60 @@ This portfolio serves as a central hub presenting engineering work, production w
 
 ```text
 portfolio/
-├── index.html              # Main HTML document and single-page layout
-├── _headers                # Netlify edge HTTP security response headers
-├── package.json            # NPM scripts and devDependencies for Tailwind CLI
+├── index.html              # Main HTML document & single-page layout
+├── _headers                # Production HTTP security headers (CSP, HSTS)
+├── package.json            # NPM scripts & devDependencies for Tailwind CLI
 ├── package-lock.json       # Exact dependency lockfile
 ├── README.md               # Project documentation
+├── .gitignore              # Git ignore rules for clean repository hygiene
 │
-├── assets/                 # Static media and document assets
+├── assets/                 # Production media, document, and font assets
 │   ├── docs/
-│   │   └── resume.pdf      # Local resume PDF asset for direct download
+│   │   └── resume.pdf      # PDF resume asset for direct download
+│   ├── fonts/              # Self-hosted WOFF2 variable fonts
+│   │   ├── inter-latin.woff2
+│   │   ├── inter-latin-ext.woff2
+│   │   ├── manrope-latin.woff2
+│   │   ├── manrope-latin-ext.woff2
+│   │   ├── playfair-display-italic-latin.woff2
+│   │   ├── playfair-display-italic-latin-ext.woff2
+│   │   ├── playfair-display-latin.woff2
+│   │   └── playfair-display-latin-ext.woff2
 │   ├── icons/
-│   │   └── favicon.svg     # Clean vector favicon and logo asset
-│   └── images/
+│   │   ├── favicon.svg     # Clean vector brand favicon
+│   │   └── skills/         # Authentic brand SVG logos for tech toolkit
+│   │       ├── react.svg
+│   │       ├── nextjs.svg
+│   │       ├── nodejs.svg
+│   │       ├── express.svg
+│   │       ├── mongodb.svg
+│   │       ├── postgresql.svg
+│   │       ├── tailwindcss.svg
+│   │       ├── typescript.svg
+│   │       └── ...
+│   └── images/             # Optimized web illustrations and project previews
+│       ├── hero-laptop-windows.png
+│       ├── hero_laptop_mockup.png
 │       └── projects/
-│           ├── gohyred_preview.png   # Authentic gohyred interface preview
-│           └── resumly_preview.png   # Authentic Resumly interface preview
+│           ├── gohyred_preview.png
+│           └── resumly_preview.png
 │
 ├── css/
-│   ├── input.css           # Tailwind CSS v4 source styles and theme tokens
+│   ├── input.css           # Tailwind CSS v4 design tokens and utilities
 │   └── style.css           # Compiled, minified production stylesheet
 │
 └── js/
-    └── script.js           # Client runtime logic, mobile menu, and scroll-spy
+    └── script.js           # Client runtime logic (mobile menu, scroll-spy)
 ```
-
-### Key Files & Directories
-
-* **[`index.html`](index.html)** — Semantic single-page application containing all sections (`#home`, `#about`, `#skills`, `#projects`, `#services`, `#contact`, `footer`).
-* **[`assets/`](assets/)** — Cleanly categorized subdirectories for images, icons, and document downloads.
-* **[`css/input.css`](css/input.css)** — Tailwind `@theme` design tokens, base layer overrides, and custom utility classes.
-* **[`css/style.css`](css/style.css)** — Minified production stylesheet built by Tailwind CLI v4.
-* **[`js/script.js`](js/script.js)** — Lean vanilla JavaScript managing mobile navigation, scroll-spy focal tracking, and header scroll effects.
-* **[`_headers`](_headers)** — Production HTTP security response headers delivered by Netlify.
-
----
-
-## Security Hardening
-
-The portfolio incorporates defense-in-depth security headers and client-side best practices:
-
-* **Content Security Policy (CSP)** — Strict policy delivered via `_headers` restricting script, style, font, and image execution to whitelisted origins (`'self'`, Google Fonts).
-* **Clickjacking Protection** — Enforced via `frame-ancestors 'none'` (CSP) and `X-Frame-Options: DENY`.
-* **MIME Sniffing Defense** — `X-Content-Type-Options: nosniff` enforced across all responses.
-* **Referrer Control** — `Referrer-Policy: strict-origin-when-cross-origin` protects sensitive URL paths during outbound navigation.
-* **Permissions Policy** — Restricts unused browser features (camera, microphone, geolocation, browsing topics).
-* **Transport Security (HSTS)** — `Strict-Transport-Security: max-age=31536000; includeSubDomains` enforces HTTPS.
-* **Isolated Outbound Links** — All external links enforce `rel="noopener noreferrer"`.
-* **Zero Secret Exposure** — Static client-side architecture with zero exposed credentials or environment keys.
 
 ---
 
 ## Getting Started
 
-Follow these steps to set up and run the portfolio locally.
-
 ### Prerequisites
 
-* **Node.js** (v18.0.0 or higher)
-* **npm** (bundled with Node.js)
+- **Node.js** (v18.0.0 or higher recommended)
+- **npm** (bundled with Node.js)
 
 ### 1. Clone the Repository
 
@@ -109,7 +119,7 @@ git clone https://github.com/Sudhanshuukr/portfolio.git
 cd portfolio
 ```
 
-### 2. Install Dependencies
+### 2. Install Build Dependencies
 
 ```bash
 npm install
@@ -131,21 +141,56 @@ npm run build
 
 ### 4. Run Locally
 
-Open `index.html` directly in any modern browser, or run a local HTTP server:
+Open `index.html` directly in any modern browser, or launch a lightweight local HTTP server:
 
 ```bash
-npx http-server ./
+npx serve .
 ```
 
-Open `http://localhost:8080` in your browser.
+Navigate to `http://localhost:3000` in your web browser.
 
 ---
 
-## Contact
+## Deployment
 
-* **Email:** [sudhanshukr388@gmail.com](mailto:sudhanshukr388@gmail.com)
-* **LinkedIn:** [linkedin.com/in/sudhanshu-kumar-9a5687247](https://www.linkedin.com/in/sudhanshu-kumar-9a5687247)
-* **GitHub:** [github.com/sudhanshuukr](https://github.com/sudhanshuukr)
+The portfolio is structured as a static website compatible with any modern edge CDN or static hosting provider:
+
+- **Netlify:** Continuous deployment from GitHub with the included `_headers` file providing pre-configured HTTP security response headers (CSP, HSTS, frame protection, referrer policy).
+  - Build command: `npm run build`
+  - Publish directory: `.`
+- **Vercel:** Static site deployment with zero configuration.
+- **GitHub Pages:** Static branch publishing from `main`.
+
+---
+
+## Security Hardening
+
+The repository enforces client-side defense-in-depth security headers via the Netlify `_headers` configuration:
+
+- **Content Security Policy (CSP):** Strict policy specifying:
+  - `default-src 'none'`
+  - `script-src 'self'`
+  - `style-src 'self' https://fonts.googleapis.com`
+  - `font-src 'self' https://fonts.gstatic.com`
+  - `img-src 'self'`
+  - `connect-src 'none'`, `frame-src 'none'`, `object-src 'none'`, `form-action 'none'`
+  - `frame-ancestors 'none'`, `base-uri 'self'`, `upgrade-insecure-requests`
+- **Clickjacking Protection:** Enforced via `frame-ancestors 'none'` and `X-Frame-Options: DENY`.
+- **MIME Sniffing Defense:** `X-Content-Type-Options: nosniff`.
+- **Referrer Privacy:** `Referrer-Policy: strict-origin-when-cross-origin`.
+- **Permissions Policy:** Restricts browser features: `camera=(), microphone=(), geolocation=(), browsing-topics=()`.
+- **Transport Security (HSTS):** `Strict-Transport-Security: max-age=31536000; includeSubDomains`.
+
+---
+
+## Author
+
+**Sudhanshu Kumar** — Full-Stack Developer ('27 Batch)
+
+- **Portfolio:** [https://sudhanshuworks.netlify.app/](https://sudhanshuworks.netlify.app/)
+- **Email:** [sudhanshuikr388@gmail.com](mailto:sudhanshuikr388@gmail.com)
+- **LinkedIn:** [linkedin.com/in/sudhanshu-kumar-9a5687247](https://www.linkedin.com/in/sudhanshu-kumar-9a5687247)
+- **GitHub:** [github.com/sudhanshuukr](https://github.com/sudhanshuukr)
 
 ---
 
