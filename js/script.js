@@ -366,76 +366,40 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ==========================================
-  // THEME SWITCHER (DARK / LIGHT MODE)
-  // ==========================================
-  const themeToggleBtn = document.getElementById('themeToggle');
-
-  // Initialize theme setup based on local storage or system preference
-  const initTheme = () => {
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
-
-  const toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  };
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', toggleTheme);
-  }
-
-  // Listen for operating system theme changes in real-time
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      if (e.matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  });
-
-  initTheme();
-
-  // ==========================================
   // ACCESSIBLE MOBILE HAMBURGER MENU
   // ==========================================
-  const mobileToggle = document.getElementById('mobileMenuToggle');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const hamburgerPath = document.getElementById('hamburgerPath');
+  const mobileToggle = document.getElementById('mobileMenuBtn') || document.getElementById('mobileMenuToggle');
+  const mobileMenu = document.getElementById('mobileMenu') || document.getElementById('mobileDrawer');
+  const hamburgerIcon = document.getElementById('hamburgerIcon');
+  const closeIcon = document.getElementById('closeIcon');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
+  const openMobileMenu = () => {
+    if (!mobileMenu || !mobileToggle) return;
+    mobileToggle.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.remove('hidden');
+    if (hamburgerIcon && closeIcon) {
+      hamburgerIcon.classList.add('hidden');
+      closeIcon.classList.remove('hidden');
+    }
+  };
+
+  const closeMobileMenu = () => {
+    if (!mobileMenu || !mobileToggle) return;
+    mobileToggle.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.add('hidden');
+    if (hamburgerIcon && closeIcon) {
+      hamburgerIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    }
+  };
+
   const toggleMobileMenu = () => {
-    const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
-
-    mobileToggle.setAttribute('aria-expanded', !isOpen);
-    mobileDrawer.setAttribute('aria-hidden', isOpen);
-
-    if (!isOpen) {
-      // Open state: Slide in drawer and transform hamburger lines into an 'X'
-      mobileDrawer.classList.remove('translate-x-full');
-      hamburgerPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-      // Trap focus
-      document.body.style.overflow = 'hidden';
-      mobileDrawer.focus();
+    const isExpanded = mobileToggle && mobileToggle.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      closeMobileMenu();
     } else {
-      // Close state: Slide out drawer and restore hamburger lines
-      mobileDrawer.classList.add('translate-x-full');
-      hamburgerPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-      document.body.style.overflow = '';
+      openMobileMenu();
     }
   };
 
@@ -443,19 +407,18 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileToggle.addEventListener('click', toggleMobileMenu);
   }
 
-  // Close drawer when any mobile nav link is clicked
-  mobileLinks.forEach(link => {
+  // Close drawer/dropdown when any mobile nav link or action is clicked
+  const allMobileLinks = document.querySelectorAll('#mobileMenu a, .mobile-nav-link');
+  allMobileLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (mobileToggle.getAttribute('aria-expanded') === 'true') {
-        toggleMobileMenu();
-      }
+      closeMobileMenu();
     });
   });
 
   // Handle escape key to close mobile menu
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileToggle.getAttribute('aria-expanded') === 'true') {
-      toggleMobileMenu();
+    if (e.key === 'Escape' && mobileToggle && mobileToggle.getAttribute('aria-expanded') === 'true') {
+      closeMobileMenu();
     }
   });
 
@@ -477,13 +440,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // 1. Sticky Header shadow class addition
       if (header) {
         if (scrollTop > 10) {
-          header.classList.add('glass-nav');
-          header.querySelector('div').classList.remove('py-4');
-          header.querySelector('div').classList.add('py-3');
+          header.classList.add('scrolled-header');
         } else {
-          header.classList.remove('glass-nav');
-          header.querySelector('div').classList.remove('py-3');
-          header.querySelector('div').classList.add('py-4');
+          header.classList.remove('scrolled-header');
         }
       }
 
@@ -523,12 +482,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // SCROLL-SPY ACTIVE SECTION INDICATOR ENGINE
   // ==========================================
-  const trackedSectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
+  const trackedSectionIds = ['home', 'projects', 'skills', 'about', 'contact'];
   const trackedSections = trackedSectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean);
   const desktopNavLinks = document.querySelectorAll('.nav-link');
   const mobileNavLinks = document.querySelectorAll('.mobile-bottom-link');
+  const mobileDrawerNavLinks = document.querySelectorAll('.mobile-nav-link');
   let isClickScrolling = false;
   let clickScrollTimeout = null;
   let currentActiveSectionId = null;
@@ -538,7 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!sectionId || sectionId === currentActiveSectionId) return;
     currentActiveSectionId = sectionId;
 
-    // 1. Desktop navigation links (Indigo accent + underline)
+    // 1. Desktop navigation links (Orange indicator underline via .nav-link-active)
     desktopNavLinks.forEach(link => {
       if (link.getAttribute('href') === `#${sectionId}`) {
         link.classList.add('nav-link-active');
@@ -549,7 +509,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 2. Mobile bottom navigation links (Cyan #22D3EE accent + thin cyan underline)
+    // 2. Mobile drawer navigation links
+    mobileDrawerNavLinks.forEach(link => {
+      if (link.getAttribute('href') === `#${sectionId}`) {
+        link.classList.remove('text-[#555C68]');
+        link.classList.add('text-[#F06D13]');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('text-[#F06D13]', 'text-[#15191E]');
+        link.classList.add('text-[#555C68]');
+        link.removeAttribute('aria-current');
+      }
+    });
+
+    // 3. Mobile bottom navigation links (where present)
     mobileNavLinks.forEach(link => {
       if (link.getAttribute('href') === `#${sectionId}`) {
         link.classList.add('active');
@@ -561,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Pure geometric scroll-spy: computes active section from 30% viewport focal reference
+  // Pure geometric scroll-spy: computes active section from 35% viewport focal reference
   function updateActiveSectionOnScroll() {
     if (isClickScrolling) return;
 
@@ -571,20 +544,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxScroll = scrollHeight - viewportHeight;
 
     // 1. Genuine Top Boundary: Home is ONLY active when genuinely near the top of the page
-    if (scrollTop <= 60) {
+    if (scrollTop <= 80) {
       setActiveSection('home');
       return;
     }
 
     // 2. Genuine Bottom Boundary: Contact activates when reaching bottom of page,
     // even if shorter than the viewport or other sections
-    if (maxScroll > 0 && scrollTop >= maxScroll - 60) {
+    if (maxScroll > 0 && scrollTop >= maxScroll - 80) {
       setActiveSection('contact');
       return;
     }
 
-    // 3. Viewport focal reference line at 30% from the top of the viewport
-    const focalPoint = viewportHeight * 0.3;
+    // 3. Viewport focal reference line at 35% from the top of the viewport
+    const focalPoint = viewportHeight * 0.35;
 
     let bestSectionId = null;
     let minDistance = Infinity;
@@ -637,13 +610,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   initNavActiveState();
 
-  // Desktop navigation click handlers
-  desktopNavLinks.forEach(link => {
+  // Desktop navigation and interactive section anchor click handlers
+  const navActionLinks = document.querySelectorAll('.nav-link, header a[href^="#"], #home a[href^="#"], .mobile-nav-link');
+  navActionLinks.forEach(link => {
     link.addEventListener('click', () => {
       const targetHref = link.getAttribute('href');
       if (!targetHref || !targetHref.startsWith('#')) return;
 
       const targetId = targetHref.slice(1);
+      if (!targetId) return;
+
       isClickScrolling = true;
       clearTimeout(clickScrollTimeout);
 
@@ -703,313 +679,106 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { once: true });
 
   // ==========================================
-  // TYPING EFFECT (HERO HEADLINE CAROUSEL)
+  // TECHNICAL SKILLS - INTERACTIVE TECH ITEMS
   // ==========================================
-  const typedSubtitle = document.getElementById('typedSubtitle');
-  const roles = [
-    'Full Stack Developer',
-    'Open Source Contributor'
-  ];
+  const techItems = document.querySelectorAll('.tech-item');
+  if (techItems.length > 0) {
+    let activeTechItem = null;
 
-  let roleIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typingSpeed = 100;
-
-  const handleTyping = () => {
-    const currentRole = roles[roleIndex];
-
-    if (isDeleting) {
-      // Remove character
-      typedSubtitle.textContent = currentRole.substring(0, charIndex - 1);
-      charIndex--;
-      typingSpeed = 50; // Deletes faster than types
-    } else {
-      // Add character
-      typedSubtitle.textContent = currentRole.substring(0, charIndex + 1);
-      charIndex++;
-      typingSpeed = 100;
-    }
-
-    // Toggle typing / deleting state switches
-    if (!isDeleting && charIndex === currentRole.length) {
-      isDeleting = true;
-      typingSpeed = 2200; // Pause at full text word before deletion starts
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length; // Loop back to start role
-      typingSpeed = 500; // Pause before typing new word
-    }
-
-    setTimeout(handleTyping, typingSpeed);
-  };
-
-  if (typedSubtitle) {
-    setTimeout(handleTyping, 1000);
-  }
-
-  // ==========================================
-  // INTERSECTION OBSERVER: ANIMATE ON SCROLL (FADE IN/UP)
-  // ==========================================
-  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-
-  // Set starting state in JS to ensure CSS styles gracefully degrade if JS is disabled
-  scrollRevealElements.forEach(el => {
-    el.classList.add('opacity-0', 'translate-y-6', 'transition-all', 'duration-700', 'ease-out');
-  });
-
-  const revealCallback = (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('opacity-0', 'translate-y-6');
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        observer.unobserve(entry.target); // Trigger animation only once
-      }
-    });
-  };
-
-  const revealObserver = new IntersectionObserver(revealCallback, {
-    root: null,
-    threshold: 0.12
-  });
-
-  scrollRevealElements.forEach(el => revealObserver.observe(el));
-
-  // ==========================================
-  // BUTTON RIPPLE CLICK EFFECT
-  // ==========================================
-  const rippleButtons = document.querySelectorAll('.ripple-btn');
-
-  rippleButtons.forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      // Create element
-      const ripple = document.createElement('span');
-      ripple.classList.add('ripple-effect');
-
-      // Calculate coordinates relative to clicked button
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-
-      this.appendChild(ripple);
-
-      // Clean up ripple element from DOM
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-  });
-
-  // ==========================================
-  // HERO CONSTELLATION CANVAS ANIMATION
-  // ==========================================
-  const constellationCanvas = document.getElementById('constellationCanvas');
-  if (constellationCanvas) {
-    const ctx = constellationCanvas.getContext('2d');
-    let width = constellationCanvas.offsetWidth;
-    let height = constellationCanvas.offsetHeight;
-
-    // Set high-DPI canvas size
-    const resizeConstellation = () => {
-      const dpr = window.devicePixelRatio || 1;
-      width = constellationCanvas.clientWidth;
-      height = constellationCanvas.clientHeight;
-      constellationCanvas.width = width * dpr;
-      constellationCanvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
-    };
-
-    resizeConstellation();
-    window.addEventListener('resize', resizeConstellation);
-
-    // Tech nodes data
-    const techs = [
-      { name: 'React', color: '#06b6d4' },
-      { name: 'Node.js', color: '#10b981' },
-      { name: 'MongoDB', color: '#10b981' },
-      { name: 'Express', color: '#818cf8' },
-      { name: 'C++', color: '#6366f1' },
-      { name: 'JavaScript', color: '#38bdf8' },
-      { name: 'Tailwind', color: '#06b6d4' },
-      { name: 'Git', color: '#f43f5e' }
-    ];
-
-    const nodes = techs.map(tech => ({
-      name: tech.name,
-      color: tech.color,
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.8,
-      vy: (Math.random() - 0.5) * 0.8,
-      radius: 4,
-      pulse: Math.random() * Math.PI
-    }));
-
-    let cMouse = { x: null, y: null, active: false };
-
-    constellationCanvas.addEventListener('mousemove', (e) => {
-      const rect = constellationCanvas.getBoundingClientRect();
-      cMouse.x = e.clientX - rect.left;
-      cMouse.y = e.clientY - rect.top;
-      cMouse.active = true;
-    });
-
-    constellationCanvas.addEventListener('mouseleave', () => {
-      cMouse.active = false;
-    });
-
-    const drawConstellation = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      // Update and draw nodes
-      nodes.forEach(node => {
-        // Measure text width to calculate dynamic safety boundaries
-        ctx.font = '600 12px Inter, sans-serif';
-        const textWidth = ctx.measureText(node.name).width;
-
-        const minX = 10;
-        const maxX = width - textWidth - 20; // 12px text offset + width + padding
-        const minY = 15;
-        const maxY = height - 15;
-
-        // Move nodes
-        node.x += node.vx;
-        node.y += node.vy;
-
-        // Gentle attraction to mouse
-        if (cMouse.active) {
-          const dx = cMouse.x - node.x;
-          const dy = cMouse.y - node.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            node.x += (dx / dist) * 0.3;
-            node.y += (dy / dist) * 0.3;
-          }
+    techItems.forEach(item => {
+      // Touch and click handler for touch devices / click
+      item.addEventListener('click', (e) => {
+        // If clicking the currently active item, toggle it off
+        if (activeTechItem === item) {
+          item.classList.remove('tech-active');
+          activeTechItem = null;
+          return;
         }
 
-        // Bounce and clamp within dynamic text boundaries
-        if (node.x < minX) {
-          node.x = minX;
-          node.vx = Math.abs(node.vx);
-        } else if (node.x > maxX) {
-          node.x = maxX;
-          node.vx = -Math.abs(node.vx);
+        // Deactivate previously active item
+        if (activeTechItem) {
+          activeTechItem.classList.remove('tech-active');
         }
 
-        if (node.y < minY) {
-          node.y = minY;
-          node.vy = Math.abs(node.vy);
-        } else if (node.y > maxY) {
-          node.y = maxY;
-          node.vy = -Math.abs(node.vy);
-        }
-
-        // Pulse radius slightly
-        node.pulse += 0.02;
-        const currentRadius = node.radius + Math.sin(node.pulse) * 1.5;
-
-        // Draw glow path
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, currentRadius + 4, 0, Math.PI * 2);
-        ctx.fillStyle = node.color + '1a'; // 10% opacity
-        ctx.fill();
-
-        // Draw core node
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
-        ctx.fillStyle = node.color;
-        ctx.fill();
-
-        // Draw Text Label
-        ctx.font = '600 12px Inter, sans-serif';
-        ctx.fillStyle = '#e4e4e7';
-        ctx.textAlign = 'left';
-        ctx.fillText(node.name, node.x + 12, node.y + 4);
+        // Activate clicked item
+        item.classList.add('tech-active');
+        activeTechItem = item;
       });
 
-      // Draw links between nodes
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            // Opacity fades with distance
-            const alpha = (1 - dist / 100) * 0.15;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
+      // Keyboard support (Enter or Space toggles state)
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
         }
+      });
+    });
+
+    // Dismiss active tech item when tapping or clicking outside
+    document.addEventListener('click', (e) => {
+      if (activeTechItem && !e.target.closest('.tech-item')) {
+        activeTechItem.classList.remove('tech-active');
+        activeTechItem = null;
       }
+    });
 
-      // Draw links from mouse to nearby nodes
-      if (cMouse.active) {
-        nodes.forEach(node => {
-          const dx = cMouse.x - node.x;
-          const dy = cMouse.y - node.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(cMouse.x, cMouse.y);
-            ctx.lineTo(node.x, node.y);
-
-            // Draw a gradient line from mouse (indigo/cyan) to node color
-            const grad = ctx.createLinearGradient(cMouse.x, cMouse.y, node.x, node.y);
-            const alpha = (1 - dist / 150) * 0.35;
-            grad.addColorStop(0, `rgba(99, 102, 241, ${alpha})`);
-            grad.addColorStop(1, node.color + Math.floor(alpha * 255).toString(16).padStart(2, '0'));
-
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
+    // Clear active state on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeTechItem) {
+        activeTechItem.classList.remove('tech-active');
+        activeTechItem = null;
       }
-
-      requestAnimationFrame(drawConstellation);
-    };
-
-    drawConstellation();
+    });
   }
 
   // ==========================================
-  // TWINKLING GALAXY STARS BACKGROUND
+  // CONTACT SECTION - COPY EMAIL HANDLER
   // ==========================================
-  const galaxyStars = document.getElementById('galaxyStars');
-  if (galaxyStars) {
-    const starCount = 35;
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
+  const copyEmailBtn = document.getElementById('copyEmailBtn');
+  const copyEmailText = document.getElementById('copyEmailText');
+  let copyTimeout = null;
 
-      // Random position
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
+  if (copyEmailBtn && copyEmailText) {
+    copyEmailBtn.addEventListener('click', async () => {
+      const email = 'sudhanshukr388@gmail.com';
+      let copied = false;
 
-      // Random size (1px to 3px)
-      const size = Math.random() * 2 + 1;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
+      if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(email);
+          copied = true;
+        } catch (clipErr) {
+          // Fall through to textarea fallback if permission/focus fails
+        }
+      }
 
-      // Random animation duration (2.5s to 5.5s)
-      const duration = Math.random() * 3 + 2.5;
-      star.style.animationDuration = `${duration}s`;
+      if (!copied) {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = email;
+          textArea.style.position = 'fixed';
+          textArea.style.left = '-9999px';
+          textArea.style.top = '0';
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          copied = document.execCommand('copy');
+          document.body.removeChild(textArea);
+        } catch (fallbackErr) {
+          // Fallback failed
+        }
+      }
 
-      // Random animation delay (0s to 5s)
-      const delay = Math.random() * 5;
-      star.style.animationDelay = `${delay}s`;
+      // Always show feedback to user on click (fallback or modern)
+      clearTimeout(copyTimeout);
+      copyEmailText.textContent = 'Copied!';
+      copyEmailBtn.setAttribute('aria-label', 'Email address copied to clipboard');
 
-      galaxyStars.appendChild(star);
-    }
+      copyTimeout = setTimeout(() => {
+        copyEmailText.textContent = 'Copy';
+        copyEmailBtn.setAttribute('aria-label', 'Copy email to clipboard');
+      }, 2000);
+    });
   }
 
 });

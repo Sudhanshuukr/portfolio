@@ -9,935 +9,1533 @@
   <title>Sudhanshu Kumar | Full Stack Developer</title>
 
 
-  <!-- Preconnecting Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <!-- Preload Critical Above-The-Fold Local WOFF2 Fonts for Instant First Paint & Zero Flicker -->
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/playfair-display-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical Local @font-face Definitions Inlined in Document HEAD for Instant CSSOM Registration -->
+  <style>
+    @font-face {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 200 900;
+      font-display: swap;
+      src: url('assets/fonts/manrope-latin.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('assets/fonts/inter-latin.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('assets/fonts/playfair-display-italic-latin.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('assets/fonts/playfair-display-latin.woff2') format('woff2');
+    }
+  </style>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="s logo.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
   <!-- Compiled Tailwind CSS & Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/style.css?v=15">
 
   <!-- Defer JavaScript execution for performance -->
-  <script src="js/script.js?v=14" defer></script>
+  <script src="js/script.js?v=15" defer></script>
 </head>
 
 <body class="bg-[#0a0e17] text-slate-100 font-body overflow-x-hidden antialiased bg-grid-pattern min-h-screen">
 
-  <!-- Intro Loader Screen -->
-  <div id="introLoader" class="fixed inset-0 bg-[#0a0e17] z-50 flex items-center justify-center">
-    <canvas id="loaderCanvas" class="w-full h-full block"></canvas>
-  </div>
-
   <!-- Main Page Wrapper -->
-  <div id="appContent" class="opacity-0 pointer-events-none transition-opacity duration-1000 ease-out">
+  <div id="appContent" class="min-h-screen">
 
-    <!-- ==========================================
-       STICKY NAVIGATION HEADER
-    =========================================== -->
-    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-nav" id="mainHeader">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+    <!-- =========================================================================
+       NAVIGATION / HEADER
+       ========================================================================= -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-[#FDF6F0]/90 backdrop-blur-md"
+      id="mainHeader">
+      <div
+        class="w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-12 2xl:px-16 min-[1700px]:px-0 py-3.5 sm:py-4 flex items-center justify-between">
 
-        <!-- Logo -->
+        <!-- Logo: SK. -->
         <a href="#home"
-          class="group flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md py-1"
-          aria-label="Sudhanshu Kumar Portfolio Home">
-          <img src="s logo.svg" alt="Sudhanshu Kumar S Logo"
-            class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300">
-          <span
-            class="text-base sm:text-lg font-extrabold tracking-tight text-white group-hover:text-indigo-400 transition-colors">
-            SUDHANSHU<span class="text-indigo-400">.</span>
-          </span>
+          class="font-primary font-black text-2xl sm:text-[28px] tracking-tight text-[#15191E] select-none hover:opacity-90 transition-opacity flex items-baseline"
+          aria-label="Sudhanshu Kumar Home">
+          SK<span class="text-[#F06D13] font-black text-3xl sm:text-4xl leading-none">.</span>
         </a>
 
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-7" aria-label="Main navigation">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#skills" class="nav-link">Skills</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#contact" class="nav-link">Contact</a>
+        <!-- Desktop Navigation Links (Centered) -->
+        <nav class="hidden md:flex items-center gap-10">
+          <a href="#home"
+            class="nav-link nav-link-active font-primary text-[15px] font-semibold relative pb-1 transition-colors"
+            data-section="home">
+            Home
+          </a>
+          <a href="#projects"
+            class="nav-link font-primary text-[15px] font-semibold relative pb-1 transition-colors"
+            data-section="projects">
+            Projects
+          </a>
+          <a href="#skills"
+            class="nav-link font-primary text-[15px] font-semibold relative pb-1 transition-colors"
+            data-section="skills">
+            Skills
+          </a>
+          <a href="#about"
+            class="nav-link font-primary text-[15px] font-semibold relative pb-1 transition-colors"
+            data-section="about">
+            About
+          </a>
+        </nav>
+
+        <!-- Right: Get in Touch & Mobile Menu Toggle -->
+        <div class="flex items-center gap-4">
+          <a href="#contact"
+            class="hidden sm:inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#15191E] hover:bg-[#2A313C] text-white text-[14px] font-semibold font-secondary shadow-sm transition-all hover:translate-y-[-1px]">
+            Get in Touch <span class="text-xs">↗</span>
+          </a>
+
+          <!-- Mobile Menu Button (Hamburger) -->
+          <button id="mobileMenuBtn" type="button"
+            class="md:hidden p-2 rounded-lg text-[#15191E] hover:bg-[#FEEFE4] transition-colors focus:outline-none focus:ring-2 focus:ring-[#F06D13]"
+            aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path id="hamburgerIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+              <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobileMenu"
+        class="hidden md:hidden bg-[#FDF6F0] border-t border-[#E8DDD4] px-6 py-4 shadow-lg transition-all duration-300">
+        <nav class="flex flex-col gap-3">
+          <a href="#home"
+            class="mobile-nav-link font-primary text-base font-semibold text-[#15191E] py-2 border-b border-[#F2E7DC]">Home</a>
+          <a href="#projects"
+            class="mobile-nav-link font-primary text-base font-semibold text-[#555C68] py-2 border-b border-[#F2E7DC]">Projects</a>
+          <a href="#skills"
+            class="mobile-nav-link font-primary text-base font-semibold text-[#555C68] py-2 border-b border-[#F2E7DC]">Skills</a>
+          <a href="#about"
+            class="mobile-nav-link font-primary text-base font-semibold text-[#555C68] py-2 border-b border-[#F2E7DC]">About</a>
+          <a href="#contact"
+            class="inline-flex items-center justify-center gap-1.5 mt-2 px-5 py-3 rounded-xl bg-[#15191E] text-white text-sm font-semibold font-secondary shadow-sm">
+            Get in Touch <span class="text-xs">↗</span>
+          </a>
         </nav>
       </div>
     </header>
 
-    <!-- ==========================================
-       FLOATING MOBILE BOTTOM NAVIGATION BAR
-    =========================================== -->
-    <nav id="mobileBottomNav"
-      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden flex items-center justify-around w-[92vw] max-w-xs px-2 py-2 rounded-full border border-white/10 bg-[#0c101c]/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
-      aria-label="Mobile bottom navigation">
-      <a href="#home"
-        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
-        aria-label="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-        </svg>
-        <span class="mobile-nav-label">Home</span>
-      </a>
-      <a href="#about"
-        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
-        aria-label="About">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-        </svg>
-        <span class="mobile-nav-label">About</span>
-      </a>
-      <a href="#skills"
-        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
-        aria-label="Skills">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-        </svg>
-        <span class="mobile-nav-label">Skills</span>
-      </a>
-      <a href="#projects"
-        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
-        aria-label="Projects">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 012.25 10.875v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM2.25 16.125c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75z" />
-        </svg>
-        <span class="mobile-nav-label">Projects</span>
-      </a>
-      <a href="#contact"
-        class="mobile-bottom-link flex flex-col items-center justify-center py-1 px-2.5 rounded-full text-slate-400 hover:text-white transition-all text-[9px] font-semibold uppercase tracking-wider gap-0.5"
-        aria-label="Contact">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-        <span class="mobile-nav-label">Contact</span>
-      </a>
-    </nav>
-
-    <!-- ==========================================
+    <!-- =========================================================================
        HERO BANNER SECTION
-    =========================================== -->
+       ========================================================================= -->
     <section id="home"
-      class="min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      class="bg-[#FDF6F0] min-h-screen flex flex-col justify-between pt-18 sm:pt-20 lg:pt-22 pb-5 sm:pb-6 relative overflow-hidden"
       aria-label="Sudhanshu Kumar Hero section">
 
-      <!-- Ambient Glows -->
-      <div class="glow-orb top-1/10 left-1/10 w-72 h-72 sm:w-96 sm:h-96 bg-indigo-500"></div>
-      <div class="glow-orb bottom-1/10 right-1/10 w-72 h-72 sm:w-96 sm:h-96 bg-cyan-500"></div>
-
+      <!-- MAIN TWO-COLUMN CONTENT -->
       <div
-        class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
+        class="w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-12 2xl:px-16 min-[1700px]:px-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-start my-auto relative z-10">
 
-        <!-- Introduction Typography -->
-        <div class="lg:col-span-7 flex flex-col items-start gap-5 sm:gap-6 text-left order-1">
-          <div
-            class="text-[11px] font-semibold tracking-wider text-cyan-400 bg-cyan-950/40 border border-cyan-500/30 px-3 py-1 rounded-full flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-            Available for Internships &amp; Projects
+        <!-- LEFT COLUMN: Identity, Giant Name, Headline, Subtitle, CTA Buttons (7 cols) -->
+        <div class="lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-20">
+
+          <!-- Eyebrow Identity Label -->
+          <div class="flex items-center gap-2 mb-5 sm:mb-6">
+            <svg class="w-4 h-4 text-[#F06D13] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span class="text-xs sm:text-[13px] font-bold uppercase tracking-[0.14em] text-[#15191E]">
+              FULL-STACK DEVELOPER <span class="text-[#8A92A0] font-normal mx-0.5">/</span> '27 BATCH
+            </span>
           </div>
 
-          <div class="flex flex-col gap-2">
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-              SUDHANSHU<br>
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-300 to-cyan-300">KUMAR</span>
-            </h1>
+          <!-- Giant Oversized Name -->
+          <h1
+            class="text-[54px] sm:text-7xl lg:text-[76px] xl:text-[88px] 2xl:text-[96px] font-black tracking-[-0.04em] text-[#15191E] leading-[0.88] mb-6 sm:mb-7 font-primary select-none">
+            SUDHANSHU<br>
+            KUMAR<span class="text-[#F06D13]">.</span>
+          </h1>
 
-            <!-- Subtitle -->
-            <div class="text-base sm:text-lg md:text-xl font-medium text-slate-300 mt-1">
-              <span>Full Stack Developer &amp; Open Source Contributor</span>
-            </div>
-          </div>
-
-          <p class="text-sm sm:text-base text-slate-400 max-w-lg leading-relaxed font-normal">
-            I enjoy building web applications that solve real problems, from responsive user interfaces to backend
-            systems and REST APIs. I work with React, Next.js, Node.js, and databases like MongoDB and PostgreSQL,
-            turning ideas into functional products. I'm also interested in open source, exploring new technologies, and
-            constantly improving the way I write and build software.
-          </p>
-
-          <!-- Action Links -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-2 w-full sm:w-auto">
-            <a href="#contact" class="btn-premium ripple-btn w-full sm:w-auto text-center">
-              Let's Talk
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-            <a href="resume.pdf" download="Sudhanshu-Kumar-Resume.pdf"
-              class="btn-outline ripple-btn w-full sm:w-auto text-center"
-              aria-label="Download Sudhanshu Kumar PDF Resume">
-              Resume
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right: Technical Constellation Canvas -->
-        <div class="hidden lg:flex lg:col-span-5 justify-center order-2">
-          <div class="relative w-full max-w-md aspect-square select-none animate-float group">
-            <canvas id="constellationCanvas" class="w-full h-full block bg-transparent"></canvas>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================
-       ABOUT & ACADEMICS SECTION
-    =========================================== -->
-    <section id="about" class="py-16 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-12"
-      aria-label="About Sudhanshu Kumar">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-
-        <!-- Heading Left -->
-        <div class="lg:col-span-5 flex flex-col items-start gap-3 sm:gap-4">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400">[ SUMMARY &amp; EDUCATION ]</span>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            THE ROAD TO<br>
-            DEVELOPMENT
+          <!-- Headline: 2 lines on desktop matching reference -->
+          <h2
+            class="text-xl sm:text-2xl lg:text-[28px] xl:text-[32px] font-extrabold tracking-[-0.03em] text-[#15191E] leading-[1.18] mb-3 sm:mb-4">
+            I build scalable web products<br class="hidden sm:inline">
+            and <span class="text-[#F06D13] italic font-normal font-editorial">ship</span> useful solutions.
           </h2>
-          <div class="w-12 h-1 bg-indigo-500 rounded-full mt-1"></div>
-        </div>
 
-        <!-- Biography Content Right -->
-        <div class="lg:col-span-7 flex flex-col gap-6">
-          <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-            Full Stack Developer experienced in building and deploying full-stack web applications using React.js,
-            Next.js, JavaScript, TypeScript, Node.js, Express.js, and MongoDB. Hands-on experience with REST API
-            development, backend architecture, JWT authentication, Clerk, PostgreSQL, Prisma, and Supabase. Familiar
-            with third-party API integrations, database management, server-side development, Git, GitHub, performance
-            optimization, and deployment using Vercel and Render. Focused on building practical applications with clean,
-            maintainable code and responsive user interfaces.
+          <!-- Supporting Text: Single line on desktop -->
+          <p
+            class="text-xs sm:text-sm lg:text-[15px] text-[#555C68] font-normal leading-[1.5] mb-6 sm:mb-7 max-w-[500px]">
+            Turning ideas into real, user-focused products with modern web tech.
           </p>
 
-          <!-- University Card -->
-          <div class="p-5 sm:p-7 rounded-2xl border border-white/[0.07] bg-[#111726] shadow-sm flex flex-col gap-4">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <h4 class="font-bold text-white text-sm sm:text-base">Bachelor of Technology in Computer Science</h4>
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-3 sm:gap-3.5">
+            <a href="#projects"
+              class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#15191E] hover:bg-[#2A313C] text-white text-xs sm:text-sm font-semibold font-secondary shadow-md shadow-[#15191E]/10 transition-all hover:-translate-y-0.5"
+              aria-label="View Projects">
+              View Projects <span class="text-xs">↗</span>
+            </a>
+            <a href="assets/docs/resume.pdf" download="Sudhanshu_Kumar_Resume.pdf"
+              class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#FEFDFC] hover:bg-[#FAF6F2] text-[#15191E] text-xs sm:text-sm font-semibold font-secondary border border-[#E2D8CE] shadow-sm transition-all hover:-translate-y-0.5"
+              aria-label="Download Resume">
+              Download Resume <span class="text-xs">↓</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Currently Statement & Availability Strip (5 cols) -->
+        <div
+          class="lg:col-span-5 xl:col-span-5 flex flex-col items-start justify-center pt-2 sm:pt-4 lg:pt-14 xl:pt-16">
+
+          <!-- Currently Label with Animated Blinking Cursor -->
+          <div
+            class="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-medium text-[#64748B] mb-5 sm:mb-6">
+            <span>// Currently</span>
+            <span
+              class="inline-block w-[6px] h-[14px] sm:w-[7px] sm:h-[16px] bg-[#F06D13] animate-terminal-cursor align-middle"
+              aria-hidden="true"></span>
+          </div>
+
+          <!-- Main Statement: 2 lines on desktop matching reference -->
+          <h3
+            class="text-2xl sm:text-3xl lg:text-[34px] xl:text-[40px] 2xl:text-[44px] font-extrabold tracking-[-0.03em] text-[#15191E] leading-[1.15] mb-8 sm:mb-9">
+            Building, learning, and<br class="hidden sm:inline">
+            shipping better products.
+          </h3>
+
+          <!-- Availability Status Strip -->
+          <div
+            class="inline-flex flex-wrap sm:flex-nowrap items-center bg-[#FEFDFC]/90 border border-[#E8DED6] rounded-xl sm:rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 lg:px-5.5 lg:py-3.5 gap-3.5 sm:gap-4.5 lg:gap-5 shadow-sm shadow-[#15191E]/[0.02]">
+
+            <!-- Item 1: Availability with pulsing dot -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <span class="w-[11px] h-[11px] sm:w-3 sm:h-3 rounded-full bg-[#10B981] animate-status-dot shrink-0"
+                aria-hidden="true"></span>
               <span
-                class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-950/60 border border-indigo-500/30 text-indigo-300">
-                Expected July 2027
-              </span>
+                class="text-[13px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#15191E] whitespace-nowrap">Open
+                to Opportunities</span>
+            </div>
+
+            <!-- Divider 1 -->
+            <span class="hidden sm:block w-[1px] h-4 sm:h-[17px] bg-[#E2D8CE] shrink-0" aria-hidden="true"></span>
+
+            <!-- Item 2: Graduation batch -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <svg class="w-4 h-4 sm:w-[17px] sm:h-[17px] text-[#15191E] shrink-0" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span
+                class="text-[13px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#15191E] whitespace-nowrap">'27
+                Batch</span>
+            </div>
+
+            <!-- Divider 2 -->
+            <span class="hidden sm:block w-[1px] h-4 sm:h-[17px] bg-[#E2D8CE] shrink-0" aria-hidden="true"></span>
+
+            <!-- Item 3: Location -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <svg class="w-4 h-4 sm:w-[17px] sm:h-[17px] text-[#15191E] shrink-0" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span
+                class="text-[13px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#15191E] whitespace-nowrap">India</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTTOM PROFESSIONAL HIGHLIGHTS: 3 EQUAL COLUMNS -->
+      <div
+        class="w-full max-w-[1550px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-12 2xl:px-16 min-[1700px]:px-0 pt-6 sm:pt-8 pb-4 sm:pb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 relative">
+
+          <!-- Highlight 1: 03+ Real Projects -->
+          <div class="flex items-center gap-4 relative md:pr-10">
+            <div class="w-16 h-16 rounded-2xl bg-[#FEEFE4] flex items-center justify-center text-[#F06D13] shrink-0">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
             </div>
             <div>
-              <p class="text-xs sm:text-sm font-medium text-slate-200">
-                Dr. A. P. J. Abdul Kalam Technical University
-                <!-- <span class="text-cyan-400 font-semibold font-mono ml-2">CGPA: 8.2</span> -->
-              </p>
-              <p class="text-xs text-slate-400 mt-0.5">Greater Noida, Uttar Pradesh, India</p>
+              <h4 class="font-extrabold text-xl sm:text-[21px] text-[#15191E] tracking-tight">03+ Real Projects</h4>
+              <p class="text-[15px] text-[#555C68] font-normal mt-0.5">Designed, built and deployed end-to-end.</p>
             </div>
-            <div class="pt-3 border-t border-white/[0.06] text-xs text-slate-400">
-              <span class="text-slate-300 font-semibold">Coursework:</span> Data Structures &amp; Algorithms (C++), Full
-              Stack Development
+            <!-- Divider Line -->
+            <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-12 w-[1px] bg-[#E8DED6]"></div>
+          </div>
+
+          <!-- Highlight 2: Product Focused -->
+          <div class="flex items-center gap-4 relative md:px-10">
+            <div class="w-16 h-16 rounded-2xl bg-[#FEEFE4] flex items-center justify-center text-[#F06D13] shrink-0">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-xl sm:text-[21px] text-[#15191E] tracking-tight">Product Focused</h4>
+              <p class="text-[15px] text-[#555C68] font-normal mt-0.5">Building useful, real-world web solutions.</p>
+            </div>
+            <!-- Divider Line -->
+            <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-12 w-[1px] bg-[#E8DED6]"></div>
+          </div>
+
+          <!-- Highlight 3: Open to Opportunities -->
+          <div class="flex items-center gap-4 relative md:pl-10">
+            <div class="w-16 h-16 rounded-2xl bg-[#FEEFE4] flex items-center justify-center text-[#F06D13] shrink-0">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-xl sm:text-[21px] text-[#15191E] tracking-tight">Open to Opportunities</h4>
+              <p class="text-[15px] text-[#555C68] font-normal mt-0.5">Full-Stack Developer roles ('27 Batch).</p>
             </div>
           </div>
 
-          <!-- Achievements & Activities -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-1">
+        </div>
+      </div>
 
-            <!-- Achievement Card -->
+    </section>
+
+    <!-- ==========================================
+       FEATURED PROJECTS SECTION
+    =========================================== -->
+    <section id="projects"
+      class="bg-[#FDF6F0] min-h-screen py-20 sm:py-28 px-6 sm:px-8 lg:px-12 relative overflow-hidden"
+      aria-label="Featured Projects">
+
+      <div class="max-w-7xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div>
+            <!-- Eyebrow -->
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#F06D13] mb-2.5">
+              <span class="w-5 h-[2px] bg-[#F06D13] rounded-full inline-block"></span>
+              <span>FEATURED PROJECTS</span>
+            </div>
+            <!-- Heading -->
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#15191E] tracking-tight mb-3">
+              Projects I've Built.
+            </h2>
+            <!-- Supporting Text -->
+            <p class="text-sm sm:text-base text-[#555C68] font-normal max-w-xl">
+              A selection of real-world products I've designed, built, and deployed.
+            </p>
+          </div>
+
+          <!-- View All Projects Link (Right) -->
+          <div class="pt-2 md:pt-0 self-start md:self-end">
+            <a href="https://github.com/sudhanshuukr" target="_blank" rel="noopener noreferrer"
+              class="group inline-flex items-center gap-1.5 text-sm sm:text-base font-semibold text-[#15191E] hover:text-[#F06D13] border-b border-[#15191E]/30 hover:border-[#F06D13] pb-0.5 transition-all duration-200"
+              aria-label="View all projects on GitHub">
+              <span>View All Projects</span>
+              <span
+                class="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="space-y-12 sm:space-y-16">
+
+          <!-- ==========================================
+             PROJECT 01: gohyred (Primary Large Showcase)
+          =========================================== -->
+          <article
+            class="bg-[#FEFDFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#F0ECE4] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_-8px_rgba(240,109,19,0.08)] hover:border-[#E8DFD5] transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+              <!-- Left: Product Preview Mockup -->
+              <div class="lg:col-span-7">
+                <a href="https://www.gohyred.com" target="_blank" rel="noopener noreferrer"
+                  class="group/preview block relative rounded-2xl p-3 sm:p-5 bg-gradient-to-br from-emerald-50/80 via-emerald-100/30 to-teal-50/50 border border-emerald-100/90 overflow-hidden shadow-inner cursor-pointer"
+                  aria-label="Visit gohyred live platform">
+
+                  <!-- Soft decorative organic glow behind mockup -->
+                  <div
+                    class="absolute -top-12 -right-12 w-48 h-48 bg-emerald-200/40 rounded-full blur-2xl pointer-events-none">
+                  </div>
+                  <div
+                    class="absolute -bottom-8 -left-8 w-40 h-40 bg-teal-200/30 rounded-full blur-xl pointer-events-none">
+                  </div>
+
+                  <!-- Direct Screenshot Frame (Unwrapped, No Device Mockup) -->
+                  <div
+                    class="relative bg-white rounded-xl sm:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-200/80 overflow-hidden transition-all duration-300 group-hover/preview:shadow-[0_16px_36px_rgba(16,185,129,0.12)] group-hover/preview:scale-[1.015]">
+                    <img src="assets/images/projects/gohyred.png" alt="gohyred - AI-Powered Job Discovery Platform screenshot" width="1900"
+                      height="913"
+                      class="w-full h-auto block object-cover object-top transition-transform duration-500 group-hover/preview:scale-[1.02]"
+                      loading="lazy" />
+                  </div>
+
+                </a>
+              </div>
+
+              <!-- Right: Project Information & Metrics -->
+              <div class="lg:col-span-5 flex flex-col justify-center">
+
+                <!-- Title & Live Badge Row -->
+                <div class="flex items-center flex-wrap gap-3 mb-1.5">
+                  <a href="https://www.gohyred.com" target="_blank" rel="noopener noreferrer"
+                    class="group/link inline-flex items-center gap-1.5 text-2xl sm:text-3xl font-extrabold font-primary text-[#15191E] hover:text-[#F06D13] transition-colors"
+                    aria-label="gohyred website">
+                    <span>gohyred</span>
+                    <span
+                      class="text-xl text-[#15191E] group-hover/link:text-[#F06D13] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">↗</span>
+                  </a>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold font-secondary bg-emerald-50 border border-emerald-200 text-emerald-700">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Live</span>
+                  </span>
+                </div>
+
+                <!-- Category -->
+                <p class="text-xs font-bold uppercase tracking-wider text-[#F06D13] mb-3">
+                  AI-Powered Job Discovery Engine
+                </p>
+
+                <!-- Description -->
+                <p class="text-sm sm:text-base text-[#555C68] leading-relaxed mb-6 font-normal">
+                  Built gohyred, an AI-powered job discovery platform that aggregates openings from company career pages
+                  and multiple job boards. It offers resume analysis, skill-based job matching, and a personalized
+                  dashboard to save and track jobs. It also features Startup Radar, helping users explore 1,200+
+                  startups across Delhi NCR.
+                </p>
+
+                <!-- Metrics (3 horizontal badges) -->
+                <div class="grid grid-cols-3 gap-2 sm:gap-3 py-4 border-y border-[#F0ECE4] mb-6">
+
+                  <!-- Metric 1: 500+ Active Users -->
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-2.5">
+                    <div
+                      class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-sm sm:text-base font-bold font-primary text-[#15191E] leading-tight">500+</div>
+                      <div class="text-[10px] sm:text-xs text-[#555C68] font-medium leading-tight">Active Users</div>
+                    </div>
+                  </div>
+
+                  <!-- Metric 2: 20,000+ Jobs Indexed -->
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-2.5">
+                    <div
+                      class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                      </svg>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-sm sm:text-base font-bold font-primary text-[#15191E] leading-tight">20K+</div>
+                      <div class="text-[10px] sm:text-xs text-[#555C68] font-medium leading-tight">Jobs Indexed</div>
+                    </div>
+                  </div>
+
+                  <!-- Metric 3: 1,200+ Startups Mapped -->
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-2.5">
+                    <div
+                      class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M9 12H4s.55-3.03 2-4.5c1.62-1.63 5-2 5-2" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 9v5s3.03-.55 4.5-2c1.63-1.62 2-5 2-5" />
+                      </svg>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="text-sm sm:text-base font-bold font-primary text-[#15191E] leading-tight">1,200+</div>
+                      <div class="text-[10px] sm:text-xs text-[#555C68] font-medium leading-tight">Delhi Startups</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Technology Stack Badges with recognizable icons -->
+                <div class="flex flex-wrap items-center gap-2">
+
+                  <!-- Next.js -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Next.js">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 180 180" aria-label="Next.js">
+                      <mask height="180" id="mask-next" maskUnits="userSpaceOnUse" width="180" x="0" y="0"
+                        style="mask-type:alpha">
+                        <circle cx="90" cy="90" fill="black" r="90"></circle>
+                      </mask>
+                      <g mask="url(#mask-next)">
+                        <circle cx="90" cy="90" fill="black" r="90"></circle>
+                        <path
+                          d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
+                          fill="white"></path>
+                        <rect fill="white" height="72" width="12" x="115" y="54"></rect>
+                      </g>
+                    </svg>
+                    <span>Next.js</span>
+                  </span>
+
+                  <!-- React -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="React">
+                    <svg class="w-3.5 h-3.5 text-[#00D8FF] fill-none stroke-current stroke-[1.5]"
+                      viewBox="-11.5 -10.23174 23 20.46348" aria-label="React">
+                      <circle cx="0" cy="0" r="2.05" fill="#00D8FF"></circle>
+                      <g stroke="#00D8FF">
+                        <ellipse rx="11" ry="4.2"></ellipse>
+                        <ellipse rx="11" ry="4.2" transform="rotate(60)"></ellipse>
+                        <ellipse rx="11" ry="4.2" transform="rotate(120)"></ellipse>
+                      </g>
+                    </svg>
+                    <span>React</span>
+                  </span>
+
+                  <!-- TypeScript -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="TypeScript">
+                    <span
+                      class="w-3.5 h-3.5 bg-[#3178C6] text-white rounded-[2px] font-bold text-[9px] flex items-center justify-center leading-none">TS</span>
+                    <span>TypeScript</span>
+                  </span>
+
+                  <!-- PostgreSQL -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="PostgreSQL">
+                    <svg class="w-3.5 h-3.5 text-[#336791] fill-current" viewBox="0 0 24 24" aria-label="PostgreSQL">
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" />
+                    </svg>
+                    <span>PostgreSQL</span>
+                  </span>
+
+                  <!-- Supabase -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Supabase">
+                    <svg class="w-3.5 h-3.5 text-[#3ECF8E] fill-current" viewBox="0 0 24 24" aria-label="Supabase">
+                      <path
+                        d="M21.362 9.354H12V.396a.396.396 0 0 0-.716-.233L.169 13.916a.792.792 0 0 0 .616 1.284H10v8.958a.396.396 0 0 0 .716.233l11.115-13.753a.792.792 0 0 0-.616-1.284z" />
+                    </svg>
+                    <span>Supabase</span>
+                  </span>
+
+                  <!-- Tailwind CSS -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Tailwind CSS">
+                    <svg class="w-3.5 h-3.5 text-[#38BDF8] fill-current" viewBox="0 0 24 24" aria-label="Tailwind CSS">
+                      <path
+                        d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+                    </svg>
+                    <span>Tailwind CSS</span>
+                  </span>
+
+                  <!-- REST APIs -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="REST APIs">
+                    <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-2 text-[#F06D13]" viewBox="0 0 24 24"
+                      aria-label="REST APIs">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                    </svg>
+                    <span>REST APIs</span>
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- ==========================================
+             PROJECT 02: Resumly (Alternating Showcase)
+          =========================================== -->
+          <article
+            class="bg-[#FEFDFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#F0ECE4] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_-8px_rgba(240,109,19,0.08)] hover:border-[#E8DFD5] transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+              <!-- Info on Left on Desktop (order-2 lg:order-1) -->
+              <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-center">
+
+                <!-- Title & Status Badge Row -->
+                <div class="flex items-center flex-wrap gap-3 mb-1.5">
+                  <a href="https://resumly-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="group/link inline-flex items-center gap-1.5 text-2xl sm:text-3xl font-extrabold font-primary text-[#15191E] hover:text-[#F06D13] transition-colors"
+                    aria-label="Resumly website">
+                    <span>Resumly</span>
+                    <span
+                      class="text-xl text-[#15191E] group-hover/link:text-[#F06D13] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">↗</span>
+                  </a>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold font-secondary bg-amber-50 border border-amber-200 text-amber-800">
+                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span>Live AI App</span>
+                  </span>
+                </div>
+
+                <!-- Category -->
+                <p class="text-xs font-bold uppercase tracking-wider text-[#F06D13] mb-3">
+                  AI-Powered Resume Summarizer & Analyzer
+                </p>
+
+                <!-- Description -->
+                <p class="text-sm sm:text-base text-[#555C68] leading-relaxed mb-6 font-normal">
+                  Full-stack AI application generating Professional, ATS, and Executive summaries via Grok API,
+                  supporting multi-format parsing for PDF & DOCX uploads up to 5MB.
+                </p>
+
+                <!-- Key Capabilities (4 badges in 2x2 grid) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 py-4 border-y border-[#F0ECE4] mb-6">
+
+                  <!-- Capability 1 -->
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                      </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-[#15191E]">Grok AI engine</span>
+                  </div>
+
+                  <!-- Capability 2 -->
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                      </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-[#15191E]">10+ edge-case parsers</span>
+                  </div>
+
+                  <!-- Capability 3 -->
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+                      </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-[#15191E]">Anonymous free tier</span>
+                  </div>
+
+                  <!-- Capability 4 -->
+                  <div class="flex items-center gap-2.5">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-[#FEEFE4] flex items-center justify-center shrink-0 text-[#F06D13]">
+                      <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                        <line x1="6" y1="6" x2="6.01" y2="6" />
+                        <line x1="6" y1="18" x2="6.01" y2="18" />
+                      </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold text-[#15191E]">Scalable architecture</span>
+                  </div>
+
+                </div>
+
+                <!-- Technology Stack Badges -->
+                <div class="flex flex-wrap items-center gap-2">
+
+                  <!-- Next.js -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Next.js">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 180 180" aria-label="Next.js">
+                      <mask height="180" id="mask-next-2" maskUnits="userSpaceOnUse" width="180" x="0" y="0"
+                        style="mask-type:alpha">
+                        <circle cx="90" cy="90" fill="black" r="90"></circle>
+                      </mask>
+                      <g mask="url(#mask-next-2)">
+                        <circle cx="90" cy="90" fill="black" r="90"></circle>
+                        <path
+                          d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
+                          fill="white"></path>
+                        <rect fill="white" height="72" width="12" x="115" y="54"></rect>
+                      </g>
+                    </svg>
+                    <span>Next.js</span>
+                  </span>
+
+                  <!-- TypeScript -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="TypeScript">
+                    <span
+                      class="w-3.5 h-3.5 bg-[#3178C6] text-white rounded-[2px] font-bold text-[9px] flex items-center justify-center leading-none">TS</span>
+                    <span>TypeScript</span>
+                  </span>
+
+                  <!-- Tailwind CSS -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Tailwind CSS">
+                    <svg class="w-3.5 h-3.5 text-[#38BDF8] fill-current" viewBox="0 0 24 24" aria-label="Tailwind CSS">
+                      <path
+                        d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+                    </svg>
+                    <span>Tailwind CSS</span>
+                  </span>
+
+                  <!-- Node.js -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Node.js">
+                    <svg class="w-3.5 h-3.5 text-[#539E43] fill-current" viewBox="0 0 24 24" aria-label="Node.js">
+                      <path
+                        d="M12 2.5L2.8 7.8v10.4L12 23.5l9.2-5.3V7.8L12 2.5zm0 2.3l6.9 4v7.9L12 20.7l-6.9-4V8.8l6.9-4z" />
+                    </svg>
+                    <span>Node.js</span>
+                  </span>
+
+                  <!-- Grok API -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Grok API">
+                    <span
+                      class="w-3.5 h-3.5 bg-black text-white rounded-full flex items-center justify-center font-black text-[9px] leading-none">/</span>
+                    <span>Grok API</span>
+                  </span>
+
+                  <!-- Server Actions -->
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-semibold text-[#15191E]"
+                    title="Server Actions">
+                    <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-2 text-[#F06D13]" viewBox="0 0 24 24"
+                      aria-label="Server Actions">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                    <span>Server Actions</span>
+                  </span>
+
+                </div>
+
+              </div>
+
+              <!-- Right: Product Preview Mockup (order-1 lg:order-2) -->
+              <div class="lg:col-span-7 order-1 lg:order-2">
+                <a href="https://resumly-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="group/preview block relative rounded-2xl p-3 sm:p-5 bg-gradient-to-br from-amber-50/80 via-orange-50/30 to-amber-100/40 border border-amber-200/60 overflow-hidden shadow-inner cursor-pointer"
+                  aria-label="Visit Resumly live platform">
+
+                  <!-- Soft decorative organic glow behind mockup -->
+                  <div
+                    class="absolute -top-12 -left-12 w-48 h-48 bg-amber-200/40 rounded-full blur-2xl pointer-events-none">
+                  </div>
+                  <div
+                    class="absolute -bottom-8 -right-8 w-40 h-40 bg-orange-200/30 rounded-full blur-xl pointer-events-none">
+                  </div>
+
+                  <!-- Direct Screenshot Frame (Unwrapped, No Device Mockup) -->
+                  <div
+                    class="relative bg-white rounded-xl sm:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-200/80 overflow-hidden transition-all duration-300 group-hover/preview:shadow-[0_16px_36px_rgba(245,158,11,0.12)] group-hover/preview:scale-[1.015]">
+                    <img src="assets/images/projects/resumly.png" alt="Resumly - AI-Powered Resume Optimizer screenshot" width="1911"
+                      height="916"
+                      class="w-full h-auto block object-cover object-top transition-transform duration-500 group-hover/preview:scale-[1.02]"
+                      loading="lazy" />
+                  </div>
+
+                </a>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+       TECHNICAL SKILLS SECTION
+    =========================================== -->
+    <section id="skills"
+      class="bg-[#FDF6F0] min-h-screen py-20 sm:py-28 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-12 relative overflow-hidden"
+      aria-label="Technical Skills">
+
+      <div class="max-w-7xl 2xl:max-w-[1600px] min-[1700px]:max-w-[1720px] mx-auto">
+
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-2 sm:mb-3">
+              <span class="w-6 h-0.5 bg-[#F06D13] inline-block rounded-full"></span>
+              <span class="text-xs sm:text-sm font-bold tracking-wider text-[#F06D13] uppercase">Technical Skills</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#15191E] tracking-tight">
+              My Tech Toolkit<span class="text-[#F06D13]">.</span>
+            </h2>
+            <p class="text-sm sm:text-base text-[#555C68] mt-2 sm:mt-3 max-w-xl font-normal leading-relaxed">
+              Technologies and tools I use to build, ship and maintain real-world products.
+            </p>
+          </div>
+
+          <!-- Header Right Badge -->
+          <div
+            class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#FAF5EE] border border-[#EBE3D7] shadow-sm self-start md:self-auto shrink-0">
             <div
-              class="p-5 rounded-2xl border border-white/[0.07] bg-[#111726] hover:border-cyan-500/30 transition-colors flex flex-col gap-3">
-              <div class="text-cyan-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.75c-.622 0-1.125-.503-1.125-1.125V11.25m6.75 3.375A3.375 3.375 0 0018 11.25V9a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0112 4.5v-.375C12 3.504 11.496 3 10.875 3H9.125C8.504 3 8 3.504 8 4.125V4.5a1.125 1.125 0 01-1.125 1.125h-1.5A3.375 3.375 0 002 9v2.25c0 1.24.62 2.33 1.575 2.998m15.425-4c0-.622-.503-1.125-1.125-1.125h-1.5C14.252 9 13.5 8.248 13.5 7.375v-1.5" />
-                </svg>
+              class="w-8 h-8 rounded-xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center font-mono font-bold text-sm">
+              &lt;/&gt;
+            </div>
+            <div class="text-left text-xs sm:text-[13px] leading-tight">
+              <span class="text-[#555C68] block">Focused on building</span>
+              <span class="font-bold text-[#15191E]">full-stack products</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Skills Cards Grid (12-col Desktop, 2-col Tablet, 1-col Mobile) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6">
+
+          <!-- 1. Languages Card (xl:col-span-4) -->
+          <article
+            class="xl:col-span-4 bg-[#FFFBF7] rounded-3xl p-5 sm:p-6 xl:p-4 2xl:p-7 border border-[#F4ECE3] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-6px_rgba(240,109,19,0.06)] hover:border-[#EAE0D4] transition-all duration-300 flex flex-col justify-between">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-[#FEE8D8] text-[#EA580C] flex items-center justify-center shrink-0 shadow-sm">
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold font-primary text-[#15191E] leading-tight">Languages</h3>
+                  <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Core syntax and
+                    problem solving.</p>
+                </div>
+              </div>
+              <span
+                class="text-xs font-semibold text-[#555C68] px-2.5 py-1 rounded-lg border border-[#E8DFD3] bg-white/80 shrink-0">
+                5 Stack
+              </span>
+            </div>
+
+            <!-- Technology Items Container -->
+            <div
+              class="bg-white rounded-2xl p-2 sm:p-2.5 xl:py-3 xl:px-1 2xl:py-4 2xl:px-2 border border-[#F0ECE4]/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)]">
+              <div class="grid grid-cols-5 divide-x divide-slate-100 text-center">
+
+                <!-- JavaScript -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="JavaScript" title="JavaScript">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/javascript.svg" alt="JavaScript"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">JavaScript</span>
+                </div>
+
+                <!-- TypeScript -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="TypeScript" title="TypeScript">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/typescript.svg" alt="TypeScript"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">TypeScript</span>
+                </div>
+
+                <!-- C++ -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="C++" title="C++">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/cplusplus.svg" alt="C++"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">C++</span>
+                </div>
+
+                <!-- HTML5 -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="HTML5" title="HTML5">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/html5.svg" alt="HTML5"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">HTML5</span>
+                </div>
+
+                <!-- CSS3 -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="CSS3" title="CSS3">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/css3.svg" alt="CSS3"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">CSS3</span>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Frontend Card (xl:col-span-4) -->
+          <article
+            class="xl:col-span-4 bg-[#FAF9FE] rounded-3xl p-5 sm:p-6 xl:p-4 2xl:p-7 border border-[#EFEAF8] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-6px_rgba(124,58,237,0.06)] hover:border-[#E2DCF4] transition-all duration-300 flex flex-col justify-between">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-[#ECE9FE] text-[#7C3AED] flex items-center justify-center shrink-0 shadow-sm">
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold font-primary text-[#15191E] leading-tight">Frontend</h3>
+                  <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">UI development and
+                    user experience.</p>
+                </div>
+              </div>
+              <span
+                class="text-xs font-semibold text-[#555C68] px-2.5 py-1 rounded-lg border border-[#E0D8F0] bg-white/80 shrink-0">
+                5 Stack
+              </span>
+            </div>
+
+            <!-- Technology Items Container -->
+            <div
+              class="bg-white rounded-2xl p-2 sm:p-2.5 xl:py-3 xl:px-1 2xl:py-4 2xl:px-2 border border-[#F0ECE4]/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)]">
+              <div class="grid grid-cols-5 divide-x divide-slate-100 text-center">
+
+                <!-- React.js -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="React.js" title="React.js">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/react.svg" alt="React.js"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">React.js</span>
+                </div>
+
+                <!-- Next.js -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Next.js" title="Next.js">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/nextjs.svg" alt="Next.js"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Next.js</span>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Tailwind CSS" title="Tailwind CSS">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/tailwindcss.svg" alt="Tailwind CSS"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Tailwind CSS</span>
+                </div>
+
+                <!-- Responsive UI -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Responsive UI" title="Responsive UI">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/responsive-ui.svg" alt="Responsive UI"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Responsive UI</span>
+                </div>
+
+                <!-- Performance -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Performance" title="Performance">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/performance.svg" alt="Performance"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Performance</span>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Backend Card (xl:col-span-4) -->
+          <article
+            class="xl:col-span-4 bg-[#F6F9FE] rounded-3xl p-5 sm:p-6 xl:p-4 2xl:p-7 border border-[#E6EFF9] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-6px_rgba(37,99,235,0.06)] hover:border-[#D6E4F5] transition-all duration-300 flex flex-col justify-between">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-[#E0ECFC] text-[#2563EB] flex items-center justify-center shrink-0 shadow-sm">
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="5" rx="1.5" />
+                    <rect x="2" y="9.5" width="20" height="5" rx="1.5" />
+                    <rect x="2" y="17" width="20" height="5" rx="1.5" />
+                    <circle cx="6" cy="4.5" r="0.75" fill="currentColor" />
+                    <circle cx="6" cy="12" r="0.75" fill="currentColor" />
+                    <circle cx="6" cy="19.5" r="0.75" fill="currentColor" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold font-primary text-[#15191E] leading-tight">Backend</h3>
+                  <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Servers, APIs and
+                    application logic.</p>
+                </div>
+              </div>
+              <span
+                class="text-xs font-semibold text-[#555C68] px-2.5 py-1 rounded-lg border border-[#D5E3F5] bg-white/80 shrink-0">
+                5 Stack
+              </span>
+            </div>
+
+            <!-- Technology Items Container -->
+            <div
+              class="bg-white rounded-2xl p-2 sm:p-2.5 xl:py-3 xl:px-1 2xl:py-4 2xl:px-2 border border-[#F0ECE4]/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)]">
+              <div class="grid grid-cols-5 divide-x divide-slate-100 text-center">
+
+                <!-- Node.js -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Node.js" title="Node.js">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/nodejs.svg" alt="Node.js"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Node.js</span>
+                </div>
+
+                <!-- Express.js -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Express.js" title="Express.js">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/express.svg" alt="Express.js"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Express.js</span>
+                </div>
+
+                <!-- REST APIs -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="REST APIs" title="REST APIs">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/rest-api.svg" alt="REST APIs"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">REST APIs</span>
+                </div>
+
+                <!-- JWT Auth -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="JWT Auth" title="JWT Auth">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/jwt.svg" alt="JWT Auth"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">JWT Auth</span>
+                </div>
+
+                <!-- Zod -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Zod" title="Zod">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/zod.svg" alt="Zod"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Zod</span>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Database Card (xl:col-span-5) -->
+          <article
+            class="xl:col-span-5 bg-[#F6FAF7] rounded-3xl p-5 sm:p-6 xl:p-4 2xl:p-7 border border-[#E6F2EA] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-6px_rgba(22,163,74,0.06)] hover:border-[#D4E8DA] transition-all duration-300 flex flex-col justify-between">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-[#DCF4E5] text-[#16A34A] flex items-center justify-center shrink-0 shadow-sm">
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <ellipse cx="12" cy="5" rx="9" ry="3" />
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold font-primary text-[#15191E] leading-tight">Database</h3>
+                  <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Data storage,
+                    modeling and access.</p>
+                </div>
+              </div>
+              <span
+                class="text-xs font-semibold text-[#555C68] px-2.5 py-1 rounded-lg border border-[#D3E8DA] bg-white/80 shrink-0">
+                4 Stack
+              </span>
+            </div>
+
+            <!-- Technology Items Container -->
+            <div
+              class="bg-white rounded-2xl p-2 sm:p-2.5 xl:py-3 xl:px-2 2xl:py-4 2xl:px-3 border border-[#F0ECE4]/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)]">
+              <div class="grid grid-cols-4 divide-x divide-slate-100 text-center">
+
+                <!-- MongoDB -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="MongoDB" title="MongoDB">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/mongodb.svg" alt="MongoDB"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">MongoDB</span>
+                </div>
+
+                <!-- PostgreSQL -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="PostgreSQL" title="PostgreSQL">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/postgresql.svg" alt="PostgreSQL"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">PostgreSQL</span>
+                </div>
+
+                <!-- Supabase -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Supabase" title="Supabase">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/supabase.svg" alt="Supabase"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Supabase</span>
+                </div>
+
+                <!-- Schema Design -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Schema Design" title="Schema Design">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/schema-design.svg" alt="Schema Design"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Schema Design</span>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Tooling Card (xl:col-span-7, md:col-span-2) -->
+          <article
+            class="xl:col-span-7 md:col-span-2 bg-[#FFFBF7] rounded-3xl p-5 sm:p-6 xl:p-4 2xl:p-7 border border-[#F4ECE3] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-6px_rgba(240,109,19,0.06)] hover:border-[#EAE0D4] transition-all duration-300 flex flex-col justify-between">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3.5 min-w-0">
+                <div
+                  class="w-11 h-11 rounded-2xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-sm">
+                  <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <h3 class="text-lg sm:text-xl font-bold font-primary text-[#15191E] leading-tight">Tooling</h3>
+                  <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Development, testing,
+                    deployment and workflows.</p>
+                </div>
+              </div>
+              <span
+                class="text-xs font-semibold text-[#555C68] px-2.5 py-1 rounded-lg border border-[#E8DFD3] bg-white/80 shrink-0">
+                6 Stack
+              </span>
+            </div>
+
+            <!-- Technology Items Container -->
+            <div
+              class="bg-white rounded-2xl p-2 sm:p-2.5 xl:py-3 xl:px-2 2xl:py-4 2xl:px-3 border border-[#F0ECE4]/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)]">
+              <div class="grid grid-cols-6 divide-x divide-slate-100 text-center">
+
+                <!-- Git -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Git" title="Git">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/git.svg" alt="Git"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Git</span>
+                </div>
+
+                <!-- GitHub -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="GitHub" title="GitHub">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/github.svg" alt="GitHub"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">GitHub</span>
+                </div>
+
+                <!-- Postman -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Postman" title="Postman">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/postman.svg" alt="Postman"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Postman</span>
+                </div>
+
+                <!-- VS Code -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="VS Code" title="VS Code">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/vscode.svg" alt="VS Code"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">VS Code</span>
+                </div>
+
+                <!-- Vercel -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Vercel" title="Vercel">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/vercel.svg" alt="Vercel"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Vercel</span>
+                </div>
+
+                <!-- Cloudinary -->
+                <div
+                  class="tech-item group relative flex flex-col items-center justify-center h-[68px] sm:h-[74px] xl:h-[70px] 2xl:h-[78px] cursor-pointer focus:outline-none rounded-xl"
+                  tabindex="0" role="button" aria-label="Cloudinary" title="Cloudinary">
+                  <div class="tech-icon-wrapper flex items-center justify-center">
+                    <img src="assets/icons/skills/cloudinary.svg" alt="Cloudinary"
+                      class="w-8 h-8 sm:w-9 sm:h-9 object-contain select-none pointer-events-none" loading="lazy" />
+                  </div>
+                  <span class="tech-name-label">Cloudinary</span>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+       ABOUT ME SECTION
+    =========================================== -->
+    <section id="about"
+      class="bg-[#FDF6F0] min-h-screen py-20 sm:py-28 px-4 sm:px-6 lg:px-8 xl:px-12 relative overflow-hidden"
+      aria-label="About Sudhanshu Kumar">
+
+      <div class="max-w-7xl 2xl:max-w-[1600px] min-[1700px]:max-w-[1720px] mx-auto">
+
+        <!-- 3-Column Editorial Grid (Desktop) / Balanced Responsive Stack -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-8 2xl:gap-12 items-stretch">
+
+          <!-- Left Column — Typographic Identity Block (No Profile Photo) -->
+          <div
+            class="lg:col-span-3 xl:col-span-3 bg-[#FFFBF7] rounded-3xl p-6 sm:p-7 border border-[#F4ECE3] shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-4">
+                <span class="w-5 h-0.5 bg-[#F06D13] inline-block rounded-full"></span>
+                <span class="text-xs font-bold tracking-wider text-[#F06D13] uppercase">About Me</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-[#15191E] tracking-tight leading-snug">
+                Engineering software with product clarity &amp; craft.
+              </h3>
+              <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-3 leading-relaxed">
+                Bridging thoughtful UI architecture with scalable, end-to-end backend systems and practical product
+                ownership.
+              </p>
+
+              <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
+                <span class="px-2.5 py-1 rounded-lg bg-[#FAF5EE] border border-[#EAE0D4] text-[#15191E]">BTech
+                  &rsquo;27</span>
+                <span class="px-2.5 py-1 rounded-lg bg-[#FAF5EE] border border-[#EAE0D4] text-[#555C68]">Computer
+                  Science</span>
+                <span class="px-2.5 py-1 rounded-lg bg-[#FAF5EE] border border-[#EAE0D4] text-[#555C68]">Delhi NCR,
+                  India</span>
+              </div>
+            </div>
+
+            <!-- Identity Pill -->
+            <div class="mt-8 pt-6 border-t border-[#F0ECE4] flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-2xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center font-mono font-bold text-sm shrink-0 shadow-sm">
+                &lt;/&gt;
               </div>
               <div>
-                <h5 class="text-xs font-bold text-white uppercase tracking-wider">WCHL 2025 Qualifier</h5>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed font-normal">
-                  Regional Round Qualifier in World Computer Hacker League 2025. Recognized for innovation and problem
-                  solving.
+                <span class="block text-sm font-extrabold text-[#15191E] leading-tight">Sudhanshu Kumar</span>
+                <span class="block text-xs text-[#555C68] font-normal leading-tight mt-0.5">Full-Stack Developer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Column — Main Introduction & Statistics -->
+          <div class="lg:col-span-5 xl:col-span-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-6 h-0.5 bg-[#F06D13] inline-block rounded-full"></span>
+                <span class="text-xs sm:text-sm font-bold tracking-wider text-[#F06D13] uppercase">About Me</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl xl:text-4xl font-extrabold text-[#15191E] tracking-tight leading-[1.18]">
+                A developer who enjoys building <span class="text-[#F06D13] italic font-editorial font-bold">useful
+                  products.</span>
+              </h2>
+              <div
+                class="space-y-3.5 sm:space-y-4 mt-5 text-[15px] sm:text-[17px] text-[#555C68] font-normal leading-relaxed">
+                <p>
+                  I'm a full-stack developer who enjoys turning ideas into functional, real-world products. I've worked
+                  on building web applications from the ground up, taking care of everything from intuitive user
+                  interfaces and backend APIs to database integration and deployment.
+                </p>
+                <p>
+                  I enjoy understanding how products work behind the scenes, solving engineering challenges, and
+                  building solutions that are reliable, maintainable, and useful to people.
+                </p>
+                <p>
+                  Currently, I'm exploring deeper aspects of backend architecture, system design, and building products
+                  that can scale.
                 </p>
               </div>
             </div>
 
-            <!-- Leadership Card -->
-            <div
-              class="p-5 rounded-2xl border border-white/[0.07] bg-[#111726] hover:border-indigo-500/30 transition-colors flex flex-col gap-3">
-              <div class="text-indigo-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                </svg>
-              </div>
-              <div>
-                <h5 class="text-xs font-bold text-white uppercase tracking-wider">Hackamania Organizer</h5>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed font-normal">
-                  Organized and managed Hackamania, an 8-hour hackathon hosted by TheElites at Microsoft, Gurugram.
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================
-       SKILLS SECTION (DISCIPLINED TILES)
-    =========================================== -->
-    <section id="skills" class="py-16 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-12"
-      aria-label="Sudhanshu Kumar Skill Categories">
-
-      <div class="text-center mb-12 md:mb-16">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400">[ CORE CAPABILITIES ]</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2 mb-3">TECHNICAL SKILLS
-        </h2>
-        <div class="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-      </div>
-
-      <!-- Skills Grid (6 Categories) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-
-        <!-- 1. Languages Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.15)] overflow-hidden">
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
+            <!-- Professional Statistics -->
+            <div class="mt-8 pt-6 border-t border-[#F0ECE4]/90 grid grid-cols-3 divide-x divide-[#EAE0D4] items-center">
+              <!-- Stat 1 -->
+              <div class="flex items-center gap-2.5 sm:gap-3 pr-2">
                 <div
-                  class="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-105 group-hover:bg-indigo-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                  class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <rect width="18" height="12" x="3" y="4" rx="2" />
+                    <line x1="2" x2="22" y1="20" y2="20" />
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">Languages</h3>
-                  <span class="text-[11px] text-slate-400">Core Syntax &amp; Logic</span>
+                  <span
+                    class="block text-base sm:text-lg font-black font-primary text-[#15191E] leading-tight">3+</span>
+                  <span class="block text-[11px] sm:text-xs text-[#555C68] font-medium leading-tight">Projects</span>
                 </div>
               </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">5
-                Stack</span>
-            </div>
 
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                JavaScript
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                TypeScript
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                C++
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                HTML5
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                CSS3
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Frontend Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(6,182,212,0.15)] overflow-hidden">
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
+              <!-- Stat 2: 1K+ Active Users Across gohyred -->
+              <div class="flex items-center gap-2 sm:gap-2.5 px-1.5 sm:px-3">
                 <div
-                  class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
+                  class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-[2]" viewBox="0 0 24 24"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <span
+                    class="block text-base sm:text-lg font-black font-primary text-[#15191E] leading-tight">1K+</span>
+                  <span class="block text-[11px] sm:text-xs text-[#555C68] font-semibold leading-tight mt-0.5">Active
+                    Users</span>
+                  <span class="block text-[10px] sm:text-[11px] text-[#8A92A0] font-medium leading-tight mt-0.5">Across
+                    <span class="font-bold text-[#F06D13]">gohyred</span></span>
+                </div>
+              </div>
+
+              <!-- Stat 3 -->
+              <div class="flex items-center gap-2 sm:gap-2.5 pl-2 sm:pl-3">
+                <div
+                  class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M9.75 3.104v17.792M14.25 3.104v17.792M3.104 9.75h17.792M3.104 14.25h17.792" />
+                      d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.926 14.926 0 01-5.84 2.58m-.12-4.8a6 6 0 00-7.38-5.84h4.8m2.58 5.84a14.927 14.927 0 00-2.58-5.84m0 0a14.98 14.98 0 0112.12-6.16" />
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">Frontend</h3>
-                  <span class="text-[11px] text-slate-400">UI Engineering</span>
+                  <span
+                    class="block text-xs sm:text-sm font-black font-primary text-[#15191E] leading-tight">End-to-End</span>
+                  <span
+                    class="block text-[10px] sm:text-[11px] text-[#555C68] font-medium leading-tight">Ownership</span>
                 </div>
               </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">5
-                Stack</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                React.js
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Next.js
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Tailwind CSS
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Responsive UI
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Performance
-              </span>
             </div>
           </div>
-        </div>
 
-        <!-- 3. Backend Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.15)] overflow-hidden">
+          <!-- Right Column — What I Focus On & Availability Banner -->
           <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div
-                  class="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-105 group-hover:bg-indigo-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M5.25 14.25h13.5m-13.5 4.5h13.5m-13.5-9h13.5m-13.5-4.5h13.5" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">Backend</h3>
-                  <span class="text-[11px] text-slate-400">Servers &amp; Architecture</span>
-                </div>
-              </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">5
-                Stack</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                Node.js
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                Express.js
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                REST APIs
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                JWT Auth
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                Zod Validation
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Database Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(16,185,129,0.15)] overflow-hidden">
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div
-                  class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">Database</h3>
-                  <span class="text-[11px] text-slate-400">Storage &amp; Cloud</span>
-                </div>
-              </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">4
-                Stack</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                MongoDB
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                PostgreSQL
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Supabase
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Schema Design
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. AI / ML Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(6,182,212,0.15)] overflow-hidden">
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div
-                  class="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">AI / ML</h3>
-                  <span class="text-[11px] text-slate-400">LLMs &amp; Pipelines</span>
-                </div>
-              </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">4
-                Stack</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Grok API
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Gemini API
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                LLM Workflows
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                Prompt Design
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6. Developer Tools Card -->
-        <div
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/80 backdrop-blur-xl p-6 flex flex-col justify-between hover:border-violet-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(139,92,246,0.15)] overflow-hidden">
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          </div>
-
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div
-                  class="p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 group-hover:scale-105 group-hover:bg-violet-500/20 transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M11.42 15.17L17.25 21A2.67 2.67 0 0021 17.25l-5.83-5.83m-3.75 3.75L3 7.5A2.67 2.67 0 016.75 3.75l7.5 7.5m-2.83 2.83L6.75 8.25m4.67 4.67v-3.5" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-bold text-xs uppercase tracking-wider text-white">Tooling</h3>
-                  <span class="text-[11px] text-slate-400">DevOps &amp; Workflow</span>
-                </div>
-              </div>
-              <span
-                class="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">5
-                Stack</span>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-                Git &amp; GitHub
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-                Postman
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-                VS Code
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-                Vercel
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.03] border border-white/[0.07] text-slate-300 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200 select-none">
-                <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
-                Cloudinary
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================
-       PROJECTS GRID SECTION
-    =========================================== -->
-    <section id="projects" class="py-16 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-12"
-      aria-label="Sudhanshu Kumar Featured Projects">
-
-      <div class="text-center mb-12 md:mb-16">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400">[ FEATURED WORK ]</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2 mb-3">FEATURED
-          PROJECTS</h2>
-        <div class="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-
-        <!-- Project 1: Gohyred -->
-        <article
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/90 backdrop-blur-xl p-6 sm:p-8 flex flex-col justify-between hover:border-indigo-500/40 transition-all duration-300 hover:shadow-[0_20px_50px_-12px_rgba(99,102,241,0.2)] overflow-hidden">
-
-          <!-- Top Ambient Gradient Accent Line -->
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <!-- Card Content -->
-          <div class="flex flex-col gap-6">
-
-            <!-- Header Row: Category Badge + Status & External Arrow -->
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex items-center gap-2">
-                <span
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
-                  Live Platform
-                </span>
-                <span class="text-xs text-slate-500 font-mono hidden sm:inline">&bull; Web App</span>
-              </div>
-
-              <a href="https://gohyred.com" target="_blank" rel="noopener noreferrer"
-                class="p-2 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white hover:border-indigo-500/40 hover:bg-indigo-500/10 transition-all duration-200"
-                aria-label="Open Gohyred in new tab">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4 stroke-current fill-none stroke-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </a>
-            </div>
-
-            <!-- Project Title & Description -->
+            class="lg:col-span-4 xl:col-span-4 lg:border-l lg:border-[#EAE0D4]/80 lg:pl-8 xl:pl-10 flex flex-col justify-between">
             <div>
-              <h3
-                class="text-2xl font-extrabold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
-                Gohyred
+              <h3 class="text-xl sm:text-2xl font-extrabold text-[#15191E] tracking-tight mb-6">
+                What I focus on
               </h3>
-              <p class="text-xs text-indigo-400 font-semibold tracking-wide mt-0.5 mb-3">AI-Powered Job Discovery Engine
-              </p>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Built gohyred, an AI-powered job discovery platform that aggregates openings from company career pages
-                and multiple job boards. It offers resume analysis, skill-based job matching, and a personalized
-                dashboard to save and track jobs. It also features Startup Radar, helping users explore 1,200+ startups
-                across Delhi NCR.
-              </p>
+
+              <div class="space-y-5">
+                <!-- Focus 1: Product Development -->
+                <div class="flex items-start gap-3.5">
+                  <div
+                    class="w-10 h-10 rounded-2xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                    <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                      <polyline points="2 17 12 22 22 17" />
+                      <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-sm sm:text-base font-bold text-[#15191E] leading-snug">Product Development</h4>
+                    <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Turn ideas into
+                      real, usable products.</p>
+                  </div>
+                </div>
+
+                <!-- Focus 2: Full-Stack Engineering -->
+                <div class="flex items-start gap-3.5">
+                  <div
+                    class="w-10 h-10 rounded-2xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                    <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-sm sm:text-base font-bold text-[#15191E] leading-snug">Full-Stack Engineering</h4>
+                    <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Build, integrate
+                      and ship end-to-end features.</p>
+                  </div>
+                </div>
+
+                <!-- Focus 3: Scalable & Clean Code -->
+                <div class="flex items-start gap-3.5">
+                  <div
+                    class="w-10 h-10 rounded-2xl bg-[#FEEAD9] text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                    <svg class="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                      <line x1="18" y1="20" x2="18" y2="10" />
+                      <line x1="12" y1="20" x2="12" y2="4" />
+                      <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="text-sm sm:text-base font-bold text-[#15191E] leading-snug">Scalable &amp; Clean Code
+                    </h4>
+                    <p class="text-xs sm:text-[13px] text-[#555C68] font-normal mt-0.5 leading-snug">Write maintainable
+                      code and design for real users.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Highlights / Metrics Grid -->
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3.5 rounded-xl bg-[#0c101c]/80 border border-white/[0.05]">
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>500+</strong> Active Users</span>
+            <!-- Availability Banner (Clickable to #contact) -->
+            <a href="#contact"
+              class="group mt-8 p-3.5 sm:p-4 rounded-2xl bg-[#FEEFE4] border border-[#FADCC4] flex items-center justify-between hover:bg-[#FDE7D7] hover:border-[#F8CBAC] transition-all duration-200 cursor-pointer shadow-xs">
+              <div class="flex items-center gap-3 min-w-0">
+                <div
+                  class="w-8 h-8 rounded-xl bg-white text-[#EA580C] flex items-center justify-center shrink-0 shadow-xs">
+                  <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" x2="16" y1="2" y2="6" />
+                    <line x1="8" x2="8" y1="2" y2="6" />
+                    <line x1="3" x2="21" y1="10" y2="10" />
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <span class="block text-[11px] text-[#555C68] font-medium leading-tight truncate">Currently open
+                    to</span>
+                  <span class="block text-xs sm:text-[13px] font-bold text-[#15191E] leading-tight">Full-Stack
+                    Developer opportunities</span>
+                </div>
               </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>20,000+</strong> Jobs Indexed</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>1,200+</strong> Delhi NCR Startups Mapped</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-cyan-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>Multi-source</strong> Job Aggregation</span>
-              </div>
-            </div>
-
-            <!-- Tech Badges -->
-            <div class="flex flex-wrap gap-1.5 pt-1">
-              <span class="tech-badge">Next.js</span>
-              <span class="tech-badge">TypeScript</span>
-              <span class="tech-badge">React</span>
-              <span class="tech-badge">PostgreSQL</span>
-              <span class="tech-badge">Supabase</span>
-              <span class="tech-badge">Tailwind CSS</span>
-              <span class="tech-badge">REST APIs</span>
-            </div>
-
-          </div>
-
-          <!-- Bottom Action Bar -->
-          <div class="pt-6 mt-6 border-t border-white/[0.07] flex items-center justify-between">
-            <a href="https://gohyred.com" target="_blank" rel="noopener noreferrer"
-              class="w-full py-2.5 px-4 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-indigo-600 hover:border-indigo-500 hover:text-white text-slate-200 text-xs font-semibold tracking-wide flex items-center justify-center gap-2 transition-all duration-200 shadow-sm"
-              aria-label="Visit Gohyred live site">
-              <span>Visit Live Platform</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-              </svg>
+              <span
+                class="text-[#EA580C] text-base sm:text-lg font-bold group-hover:translate-x-1 transition-transform shrink-0 ml-2">→</span>
             </a>
           </div>
 
-        </article>
-
-        <!-- Project 2: Resumly -->
-        <article
-          class="group relative rounded-2xl border border-white/[0.08] bg-[#111726]/90 backdrop-blur-xl p-6 sm:p-8 flex flex-col justify-between hover:border-cyan-500/40 transition-all duration-300 hover:shadow-[0_20px_50px_-12px_rgba(6,182,212,0.2)] overflow-hidden">
-
-          <!-- Top Ambient Gradient Accent Line -->
-          <div
-            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <!-- Card Content -->
-          <div class="flex flex-col gap-6">
-
-            <!-- Header Row: Category Badge + Status & External Arrow -->
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex items-center gap-2">
-                <span
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
-                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                  Live AI App
-                </span>
-                <span class="text-xs text-slate-500 font-mono hidden sm:inline">&bull; GenAI Platform</span>
-              </div>
-
-              <a href="https://resumly-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
-                class="p-2 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 transition-all duration-200"
-                aria-label="Open Resumly in new tab">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4 stroke-current fill-none stroke-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </a>
-            </div>
-
-            <!-- Project Title & Description -->
-            <div>
-              <h3 class="text-2xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
-                Resumly
-              </h3>
-              <p class="text-xs text-cyan-400 font-semibold tracking-wide mt-0.5 mb-3">AI-Powered Resume Summarizer
-                &amp; Analyzer</p>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                Full-stack AI application generating Professional, ATS, and Executive summaries via Grok API, supporting
-                multi-format parsing for PDF &amp; DOCX uploads up to 5MB.
-              </p>
-            </div>
-
-            <!-- Highlights / Metrics Grid -->
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3.5 rounded-xl bg-[#0c101c]/80 border border-white/[0.05]">
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-indigo-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>Grok AI</strong> summary engine</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-indigo-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span><strong>10+</strong> edge-case parsers</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-indigo-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Anonymous free tier</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-indigo-400 shrink-0 fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Scalable architecture</span>
-              </div>
-            </div>
-
-            <!-- Tech Badges -->
-            <div class="flex flex-wrap gap-1.5 pt-1">
-              <span class="tech-badge">Next.js</span>
-              <span class="tech-badge">TypeScript</span>
-              <span class="tech-badge">Tailwind CSS</span>
-              <span class="tech-badge">Node.js</span>
-              <span class="tech-badge">Grok API</span>
-              <span class="tech-badge">Server Actions</span>
-            </div>
-
-          </div>
-
-          <!-- Bottom Action Bar -->
-          <div class="pt-6 mt-6 border-t border-white/[0.07] flex items-center justify-between">
-            <a href="https://resumly-eta.vercel.app/" target="_blank" rel="noopener noreferrer"
-              class="w-full py-2.5 px-4 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-cyan-600 hover:border-cyan-500 hover:text-white text-slate-200 text-xs font-semibold tracking-wide flex items-center justify-center gap-2 transition-all duration-200 shadow-sm"
-              aria-label="Visit Resumly live site">
-              <span>Visit Live Platform</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-current fill-none stroke-2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-              </svg>
-            </a>
-          </div>
-
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ==========================================
-       SERVICES SECTION
-    =========================================== -->
-    <section class="py-16 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/[0.06]"
-      aria-label="Services offered">
-
-      <div class="text-center mb-12 md:mb-16">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400">[ OFFERINGS ]</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2 mb-3">WHAT I DO</h2>
-        <div class="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
-      </div>
-
-      <!-- Services Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Service 1: Frontend -->
-        <div
-          class="p-6 sm:p-7 rounded-2xl border border-white/[0.07] bg-[#111726] flex flex-col gap-4 shadow-sm hover:border-indigo-500/30 transition-colors">
-          <span class="text-2xl font-black text-indigo-400/90 font-mono">01</span>
-          <h3 class="text-base sm:text-lg font-bold text-white tracking-tight">Frontend Engineering</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-            Building responsive, high-performance web applications using React.js, Next.js, and Tailwind CSS. Focused on
-            clean UI architecture and WCAG accessibility standards.
-          </p>
-        </div>
-
-        <!-- Service 2: Backend -->
-        <div
-          class="p-6 sm:p-7 rounded-2xl border border-white/[0.07] bg-[#111726] flex flex-col gap-4 shadow-sm hover:border-indigo-500/30 transition-colors">
-          <span class="text-2xl font-black text-indigo-400/90 font-mono">02</span>
-          <h3 class="text-base sm:text-lg font-bold text-white tracking-tight">Backend Development &amp; APIs</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-            Designing secure, scalable backend services and REST APIs with Node.js and Express.js. Implementing JWT
-            authentication, Zod request validation, and robust error handling.
-          </p>
-        </div>
-
-        <!-- Service 3: Databases & AI -->
-        <div
-          class="p-6 sm:p-7 rounded-2xl border border-white/[0.07] bg-[#111726] flex flex-col gap-4 shadow-sm hover:border-indigo-500/30 transition-colors">
-          <span class="text-2xl font-black text-indigo-400/90 font-mono">03</span>
-          <h3 class="text-base sm:text-lg font-bold text-white tracking-tight">Databases &amp; AI Integration</h3>
-          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-            Architecting relational and document databases with PostgreSQL, Supabase, and MongoDB. Integrating Grok API
-            &amp; Gemini LLMs to surface intelligent user features.
-          </p>
         </div>
 
       </div>
@@ -945,166 +1543,240 @@
 
     <!-- ==========================================
        CONTACT SECTION
+    <!-- ==========================================
+       CONTACT / LET'S CONNECT SECTION (PIXEL-ACCURATE REFERENCE IMPLEMENTATION)
+    <!-- ==========================================
+       CONTACT / LET'S CONNECT SECTION (PIXEL-ACCURATE REFERENCE IMPLEMENTATION)
+    <!-- ==========================================
+       CONTACT / LET'S CONNECT SECTION (PIXEL-ACCURATE REFERENCE IMPLEMENTATION)
+    <!-- ==========================================
+       CONTACT / LET'S CONNECT SECTION (SLIGHTLY ZOOMED +6-8% SCALE REFINEMENT)
+    <!-- ==========================================
+       CONTACT / LET'S CONNECT SECTION (REBALANCED 55:45 COLUMN DISTRIBUTION)
     =========================================== -->
-    <section id="contact" class="pt-16 md:pt-28 pb-24 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-12"
+    <section id="contact"
+      class="bg-[#FDF6F0] min-h-screen flex flex-col justify-center py-16 sm:py-24 lg:py-28 xl:py-36 px-6 sm:px-8 lg:px-12 xl:px-12 2xl:px-16 relative overflow-hidden"
       aria-label="Sudhanshu Kumar Contact Section">
 
-      <div class="text-center mb-10 md:mb-14">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-400">[ INQUIRIES &amp; CONNECT ]</span>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2 mb-3">GET IN TOUCH
-        </h2>
-        <div class="w-12 h-1 bg-indigo-500 mx-auto rounded-full"></div>
+      <!-- Subtle organic peach/cream ambient gradient swooshes in background -->
+      <div
+        class="absolute top-0 right-0 w-[580px] lg:w-[750px] h-[400px] lg:h-[520px] pointer-events-none select-none -z-0 opacity-85">
+        <svg viewBox="0 0 750 520" fill="none" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M750 0C560 85 460 240 560 410C600 475 665 510 750 520V0Z" fill="url(#topRightPeachGrad)" />
+          <defs>
+            <linearGradient id="topRightPeachGrad" x1="750" y1="0" x2="470" y2="380" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FEE4D1" stop-opacity="0.65" />
+              <stop offset="0.6" stop-color="#FEEFE4" stop-opacity="0.3" />
+              <stop offset="1" stop-color="#FDF6F0" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
-      <div class="max-w-4xl mx-auto flex flex-col items-center gap-10">
+      <div
+        class="absolute bottom-0 left-0 w-[540px] lg:w-[700px] h-[340px] lg:h-[440px] pointer-events-none select-none -z-0 opacity-80">
+        <svg viewBox="0 0 700 440" fill="none" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0 440C175 415 285 310 220 155C175 65 90 20 0 0V440Z" fill="url(#bottomLeftPeachGrad)" />
+          <defs>
+            <linearGradient id="bottomLeftPeachGrad" x1="0" y1="440" x2="275" y2="110" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FEE8D8" stop-opacity="0.55" />
+              <stop offset="0.65" stop-color="#FEEFE4" stop-opacity="0.25" />
+              <stop offset="1" stop-color="#FDF6F0" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-        <!-- Header Text with Availability Status -->
-        <div class="flex flex-col items-center text-center gap-4 max-w-2xl">
+      <div class="w-full max-w-7xl 2xl:max-w-[1580px] mx-auto relative z-10">
+
+        <!-- Two-Column Layout: Rebalanced 48:52 Distribution on 1024px, 51:49 on xl -->
+        <div class="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-0">
+
+          <!-- Left Column (48% on 1024px desktop, 51% on xl) -->
           <div
-            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Available for internships &amp; developer roles
+            class="w-full lg:w-[48%] xl:w-[51%] flex flex-col items-start lg:pr-4 xl:pr-10 2xl:pr-12 justify-center shrink-0">
+
+            <!-- Section Label: Orange bar + LET'S CONNECT + / 05 -->
+            <div class="flex items-center gap-3 sm:gap-3.5 mb-4.5 sm:mb-5.5">
+              <span class="w-10 sm:w-12 h-[3.5px] sm:h-[4px] bg-[#F06D13] rounded-full inline-block"></span>
+              <span class="font-extrabold text-[13px] sm:text-[14.5px] tracking-wider text-[#15191E] uppercase">LET'S
+                CONNECT</span>
+            </div>
+
+            <!-- Headline: Have a project in mind? Let's build it together. (Two lines on desktop) -->
+            <h2
+              class="text-3xl sm:text-[36px] md:text-[38px] lg:text-[40px] xl:text-[47px] 2xl:text-[54px] font-extrabold text-[#15191E] tracking-tight leading-[1.14]">
+              Have a project in mind?<br class="hidden sm:inline">
+              Let's build it <span class="italic font-editorial font-normal text-[#F06D13]">together.</span>
+            </h2>
+
+            <!-- Supporting Paragraph -->
+            <p
+              class="text-[15.5px] sm:text-[16.5px] xl:text-[17.5px] text-[#555C68] font-normal leading-relaxed mt-4 sm:mt-4.5 max-w-[365px] sm:max-w-md lg:max-w-[375px] xl:max-w-lg">
+              Whether it's a product idea, collaboration or an opportunity, feel free to reach out. I'm always open to
+              building and learning new things.
+            </p>
+
           </div>
 
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Let's build something great
-            together.</h3>
-          <p class="text-sm text-slate-400 leading-relaxed font-normal">
-            Whether you have an internship opportunity, a freelance project, or just want to connect, feel free to reach
-            out across any of the platforms below.
-          </p>
-        </div>
+          <!-- Thin Vertical Divider on Desktop -->
+          <div class="hidden lg:block w-[1px] bg-[#E7DDD7] self-stretch mt-3 mb-2 shrink-0"></div>
 
-        <!-- Modern Bento Contact Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 w-full">
+          <!-- Mobile Horizontal Divider (Replaces vertical divider on small screens) -->
+          <div class="w-full h-[1px] bg-[#E7DDD7] my-3 lg:hidden"></div>
 
-          <!-- Direct Email -->
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sudhanshukr388@gmail.com" target="_blank"
-            rel="noopener noreferrer"
-            class="group relative flex flex-col justify-between p-6 rounded-2xl border border-white/[0.08] bg-[#111726]/80 hover:bg-[#161e31] hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(6,182,212,0.15)] overflow-hidden"
-            aria-label="Send email to sudhanshukr388@gmail.com">
+          <!-- Right Column (52% on 1024px desktop, 49% on xl) -->
+          <div
+            class="w-full lg:w-[52%] xl:w-[49%] relative lg:top-[56px] lg:pl-3.5 xl:pl-8 2xl:pl-10 flex flex-col justify-center">
+
+            <!-- Heading: FIND ME ONLINE -->
+            <h3
+              class="text-[12.5px] sm:text-[13.5px] font-bold tracking-widest text-[#626575] uppercase mb-1.5 sm:mb-2">
+              FIND ME ONLINE
+            </h3>
+
+            <!-- Social Links Rows -->
+            <div class="flex flex-col">
+
+              <!-- Row 1: LinkedIn -->
+              <a href="https://www.linkedin.com/in/sudhanshu-kumar-9a5687247" target="_blank" rel="noopener noreferrer"
+                class="contact-social-row group flex items-center justify-between px-3 sm:px-3.5 -mx-3 sm:-mx-3.5 py-3 sm:py-3.5 border-b border-[#E7DDD7] rounded-xl cursor-pointer"
+                aria-label="Sudhanshu Kumar on LinkedIn (opens in new tab)">
+                <div class="flex items-center gap-3.5 sm:gap-4.5">
+                  <div class="social-icon-wrapper w-7.5 h-7.5 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                    <svg class="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] fill-[#15191E]" viewBox="0 0 24 24">
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </div>
+                  <div class="h-5 sm:h-5.5 w-[1px] bg-[#E7DDD7] shrink-0"></div>
+                  <span
+                    class="social-label-text font-semibold font-secondary text-[18px] sm:text-[19.5px] text-[#15191E]">
+                    LinkedIn
+                  </span>
+                </div>
+                <svg
+                  class="social-arrow-icon w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#15191E] stroke-current fill-none stroke-[2.2] stroke-linecap-round stroke-linejoin-round"
+                  viewBox="0 0 24 24">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
+
+              <!-- Row 2: GitHub -->
+              <a href="https://github.com/sudhanshuukr" target="_blank" rel="noopener noreferrer"
+                class="contact-social-row group flex items-center justify-between px-3 sm:px-3.5 -mx-3 sm:-mx-3.5 py-3 sm:py-3.5 border-b border-[#E7DDD7] rounded-xl cursor-pointer"
+                aria-label="Sudhanshu Kumar on GitHub (opens in new tab)">
+                <div class="flex items-center gap-3.5 sm:gap-4.5">
+                  <div class="social-icon-wrapper w-7.5 h-7.5 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                    <svg class="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] fill-[#15191E]" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                  </div>
+                  <div class="h-5 sm:h-5.5 w-[1px] bg-[#E7DDD7] shrink-0"></div>
+                  <span
+                    class="social-label-text font-semibold font-secondary text-[18px] sm:text-[19.5px] text-[#15191E]">
+                    GitHub
+                  </span>
+                </div>
+                <svg
+                  class="social-arrow-icon w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#15191E] stroke-current fill-none stroke-[2.2] stroke-linecap-round stroke-linejoin-round"
+                  viewBox="0 0 24 24">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
+
+              <!-- Row 3: X -->
+              <a href="https://x.com/Sudhanshuworks" target="_blank" rel="noopener noreferrer"
+                class="contact-social-row group flex items-center justify-between px-3 sm:px-3.5 -mx-3 sm:-mx-3.5 py-3 sm:py-3.5 border-b border-[#E7DDD7] rounded-xl cursor-pointer"
+                aria-label="Sudhanshu Kumar on X (opens in new tab)">
+                <div class="flex items-center gap-3.5 sm:gap-4.5">
+                  <div class="social-icon-wrapper w-7.5 h-7.5 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                    <svg class="w-[22px] h-[22px] sm:w-[24px] sm:h-[24px] fill-[#15191E]" viewBox="0 0 24 24">
+                      <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </div>
+                  <div class="h-5 sm:h-5.5 w-[1px] bg-[#E7DDD7] shrink-0"></div>
+                  <span
+                    class="social-label-text font-semibold font-secondary text-[18px] sm:text-[19.5px] text-[#15191E]">
+                    X
+                  </span>
+                </div>
+                <svg
+                  class="social-arrow-icon w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#15191E] stroke-current fill-none stroke-[2.2] stroke-linecap-round stroke-linejoin-round"
+                  viewBox="0 0 24 24">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
+
+            </div>
+
+            <!-- Email Action Bar -->
             <div
-              class="absolute -top-12 -right-12 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all duration-300 pointer-events-none">
-            </div>
+              class="mt-5 sm:mt-6 flex flex-wrap sm:flex-nowrap items-center justify-between bg-[#FFF9F5] border border-[#F3D7C6] rounded-2xl sm:rounded-full px-3 py-1.5 sm:py-2 gap-2 shadow-[0_2px_12px_rgba(240,109,19,0.03)]">
 
-            <div class="flex items-center justify-between w-full mb-6">
-              <div
-                class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 stroke-current fill-none stroke-2"
+              <!-- Left: Envelope Icon + Email Address (NO divider between icon and text) -->
+              <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <svg
+                  class="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] text-[#15191E] fill-none stroke-current stroke-[2] stroke-linecap-round stroke-linejoin-round shrink-0"
                   viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M22 6l-10 7L2 6" />
                 </svg>
+                <span
+                  class="font-semibold font-primary text-[14px] sm:text-[14.5px] lg:text-[14.5px] xl:text-[15.5px] text-[#15191E] tracking-tight">
+                  sudhanshukr388@gmail.com
+                </span>
               </div>
-              <div
-                class="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
+
+              <!-- Right: Copy & Open in Gmail Action Buttons -->
+              <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <!-- Copy Button -->
+                <button id="copyEmailBtn" type="button"
+                  class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-white border border-[#E7DDD7] hover:border-[#F06D13] text-[#15191E] text-xs font-semibold font-secondary transition-all cursor-pointer shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F06D13]"
+                  aria-label="Copy email to clipboard">
+                  <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#15191E]" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="copyEmailText">Copy</span>
+                </button>
+
+                <!-- Open in Gmail Button -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sudhanshukr388@gmail.com" target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg sm:rounded-xl bg-[#F06D13] hover:bg-[#D95F0E] text-white text-xs font-semibold font-secondary shadow-xs transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F06D13] focus-visible:ring-offset-1 shrink-0"
+                  aria-label="Open compose window in Gmail">
+                  <!-- Gmail M Logo -->
+                  <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white shrink-0" viewBox="0 0 24 24">
+                    <path
+                      d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+                  </svg>
+                  <span>Open in Gmail</span>
+                  <span class="text-xs">↗</span>
+                </a>
               </div>
+
             </div>
 
-            <div class="flex flex-col gap-0.5 text-left">
-              <span class="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
-                Email Me
-              </span>
-              <span class="text-xs text-slate-400 font-medium">
-                Drop a direct message
-              </span>
-            </div>
-          </a>
-
-          <!-- LinkedIn Detail -->
-          <a href="https://www.linkedin.com/in/sudhanshu-kumar-9a5687247" target="_blank" rel="noopener noreferrer"
-            class="group relative flex flex-col justify-between p-6 rounded-2xl border border-white/[0.08] bg-[#111726]/80 hover:bg-[#161e31] hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.15)] overflow-hidden"
-            aria-label="Connect with Sudhanshu Kumar on LinkedIn">
+            <!-- Opportunity Categories -->
             <div
-              class="absolute -top-12 -right-12 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all duration-300 pointer-events-none">
-            </div>
-
-            <div class="flex items-center justify-between w-full mb-6">
-              <div
-                class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
+              class="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mt-5 sm:mt-6 text-[13px] sm:text-[14px] text-[#555C68]">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#10B981] shrink-0" aria-hidden="true"></span>
+                <span class="font-bold text-[#15191E]">Available for</span>
               </div>
-              <div
-                class="text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </div>
+              <span class="font-medium text-[#555C68]">Full-time</span>
+              <span class="w-[1px] h-3.5 bg-[#E7DDD7] shrink-0" aria-hidden="true"></span>
+              <span class="font-medium text-[#555C68]">Internships</span>
+              <span class="w-[1px] h-3.5 bg-[#E7DDD7] shrink-0" aria-hidden="true"></span>
+              <span class="font-medium text-[#555C68]">Collaborations</span>
             </div>
 
-            <div class="flex flex-col gap-0.5 text-left">
-              <span class="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
-                LinkedIn
-              </span>
-              <span class="text-xs text-slate-400 font-medium">
-                Let's connect &amp; network
-              </span>
-            </div>
-          </a>
-
-          <!-- GitHub Detail -->
-          <a href="https://github.com/sudhanshuukr" target="_blank" rel="noopener noreferrer"
-            class="group relative flex flex-col justify-between p-6 rounded-2xl border border-white/[0.08] bg-[#111726]/80 hover:bg-[#161e31] hover:border-violet-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_12px_30px_rgba(139,92,246,0.15)] overflow-hidden"
-            aria-label="View Sudhanshu Kumar on GitHub">
-            <div
-              class="absolute -top-12 -right-12 w-24 h-24 bg-violet-500/10 rounded-full blur-xl group-hover:bg-violet-500/20 transition-all duration-300 pointer-events-none">
-            </div>
-
-            <div class="flex items-center justify-between w-full mb-6">
-              <div
-                class="p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 group-hover:scale-110 group-hover:bg-violet-500/20 transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
-                </svg>
-              </div>
-              <div
-                class="text-slate-500 group-hover:text-violet-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </div>
-            </div>
-
-            <div class="flex flex-col gap-0.5 text-left">
-              <span class="text-base sm:text-lg font-bold text-white group-hover:text-violet-300 transition-colors">
-                GitHub
-              </span>
-              <span class="text-xs text-slate-400 font-medium">
-                Explore repositories &amp; code
-              </span>
-            </div>
-          </a>
-
-        </div>
-
-        <!-- Location & Timezone Details -->
-        <div class="flex flex-wrap items-center justify-center gap-6 text-slate-400 text-xs font-medium pt-2">
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2 text-cyan-400"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
-            </svg>
-            <span>Based in Delhi NCR, India</span>
           </div>
-          <span class="hidden sm:inline text-slate-700">&bull;</span>
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-none stroke-2 text-indigo-400"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>IST (UTC+5:30)</span>
-          </div>
+
         </div>
 
       </div>
@@ -1113,19 +1785,19 @@
     <!-- ==========================================
        FOOTER
     =========================================== -->
-    <footer class="relative mt-8 border-t border-white/[0.06] py-8 pb-24 md:pb-8 px-4 sm:px-6 overflow-hidden"
+    <footer class="relative border-t border-[#F0ECE4] py-8 pb-12 px-6 sm:px-8 lg:px-12 bg-[#FDF6F0]"
       aria-label="Sitemap and copyright">
 
       <div class="max-w-7xl mx-auto flex items-center justify-center text-center">
-        <p class="text-xs text-slate-400 font-normal">
-          &copy; <span id="currentYear">2025</span> <span class="text-slate-200 font-medium">Sudhanshu Kumar</span>
-          &bull; Crafted with clean code &amp; curiosity.
+        <p class="text-xs sm:text-[13.5px] text-[#555C68] font-normal">
+          &copy; <span id="currentYear">2026</span> <span class="text-[#15191E] font-semibold">Sudhanshu Kumar</span>
+          &bull; Building with curiosity. Improving with every commit.
         </p>
       </div>
 
       <!-- Back to Top Button (Desktop Only) -->
       <button id="backToTop"
-        class="hidden md:flex fixed bottom-6 right-6 p-3 rounded-full bg-[#111726] border border-white/10 text-slate-300 hover:text-white hover:border-indigo-500/50 hover:bg-indigo-950/40 shadow-xl opacity-0 translate-y-6 hover:scale-105 active:scale-95 transition-all duration-300 pointer-events-none z-40 items-center justify-center cursor-pointer"
+        class="hidden md:flex fixed bottom-6 right-6 p-3 rounded-full bg-white border border-[#EAE0D4] text-[#15191E] hover:text-[#F06D13] hover:border-[#F06D13] shadow-lg opacity-0 translate-y-6 hover:scale-105 active:scale-95 transition-all duration-300 pointer-events-none z-40 items-center justify-center cursor-pointer"
         aria-label="Scroll page back to the top" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
