@@ -154,21 +154,26 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
     scroll-padding-top: 0;
     background-color: #0a0e17;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Section-by-Section Scroll Snap (Proximity) */
-  #home,
-  #projects,
-  #skills,
-  #about,
-  #contact {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-    scroll-margin-top: 0;
+  /* Section-by-Section Scroll Snap (Proximity) — Tablet & Desktop Only (md: 768px+) */
+  @media (min-width: 768px) {
+    html {
+      scroll-snap-type: y proximity;
+    }
+
+    #home,
+    #projects,
+    #skills,
+    #about,
+    #contact {
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+      scroll-margin-top: 0;
+    }
   }
 
   body {

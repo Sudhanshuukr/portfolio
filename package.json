@@ -13,8 +13,9 @@
     "tailwind",
     "vanilla-js"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "Sudhanshu Kumar",
+  "license": "UNLICENSED",
+  "private": true,
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0",
     "tailwindcss": "^4.0.0"

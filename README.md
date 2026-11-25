@@ -48,7 +48,7 @@ The portfolio utilizes a premium three-font typographic hierarchy, self-hosted a
   - **Resumly:** AI-Powered Resume Summarizer & Analyzer built with full-stack serverless endpoints.
 - **Categorized Technical Skills Toolkit:** Organized matrix displaying authentic brand SVG icons across Languages, Frontend, Backend, Database, and Tooling with responsive tap-and-hover technology labels.
 - **About Me & Academic Profile:** Professional background, software engineering philosophy, B.Tech Computer Science profile ('27 Batch), and verified metrics (`3+ Projects`, `1K+ Active Users Across gohyred`, `End-to-End Product Ownership`).
-- **Contact & Let's Connect:** Balanced two-column contact composition featuring a prominent headline, supporting copy, interactive email pill (`sudhanshuikr388@gmail.com`), social channels (LinkedIn, GitHub, X), and live availability indicator.
+- **Contact & Let's Connect:** Balanced two-column contact composition featuring a prominent headline, supporting copy, interactive email pill (`sudhanshukr388@gmail.com`), social channels (LinkedIn, GitHub, X), and live availability indicator.
 - **Direct Resume Access:** One-click download of the developer resume from `assets/docs/resume.pdf`.
 
 ---
@@ -188,12 +188,29 @@ The repository enforces client-side defense-in-depth security headers via the Ne
 **Sudhanshu Kumar** — Full-Stack Developer ('27 Batch)
 
 - **Portfolio:** [https://sudhanshuworks.netlify.app/](https://sudhanshuworks.netlify.app/)
-- **Email:** [sudhanshuikr388@gmail.com](mailto:sudhanshuikr388@gmail.com)
+- **Email:** [sudhanshukr388@gmail.com](mailto:sudhanshukr388@gmail.com)
 - **LinkedIn:** [linkedin.com/in/sudhanshu-kumar-9a5687247](https://www.linkedin.com/in/sudhanshu-kumar-9a5687247)
 - **GitHub:** [github.com/sudhanshuukr](https://github.com/sudhanshuukr)
 
 ---
 
-## License
+## License & Proprietary Notice
 
-This project is open source and available under the [MIT License](LICENSE)
+&copy; 2026 Sudhanshu Kumar. All rights reserved.
+
+### Proprietary Original Work
+
+All original source code, website design, UI/UX layouts, custom animations, written content, personal branding, project media, and bespoke creative assets created for this portfolio are the exclusive intellectual property of **Sudhanshu Kumar**.
+
+- **All Rights Reserved:** No permission is granted to copy, reproduce, modify, fork, redistribute, sublicense, publish, or commercially exploit any portion of the original work without prior explicit written authorization.
+- **No License Granted by Public Access:** Viewing, starring, or accessing this public repository does not grant a license or transfer of rights to use its original contents as a template, clone, or baseline for personal or commercial projects.
+
+### Third-Party Assets & Attribution
+
+Third-party software, libraries, fonts, and trademarks referenced or utilized within this repository remain the property of their respective owners and are governed by their original licenses and terms:
+
+- **Build Tools & Libraries:** Tailwind CSS is licensed under the [MIT License](https://github.com/tailwindlabs/tailwindcss/blob/main/LICENSE).
+- **Typography:** Self-hosted web fonts ([Manrope](https://scripts.sil.org/OFL), [Inter](https://scripts.sil.org/OFL), and [Playfair Display](https://scripts.sil.org/OFL)) are licensed under the SIL Open Font License (OFL).
+- **Icons & Brand Marks:** Open-source utility icons are provided via Lucide (licensed under the [ISC License](https://github.com/lucide-icons/lucide/blob/main/LICENSE)). All external technology, platform, and company trademarks or logos (e.g., React, Next.js, Node.js, MongoDB, Netlify) belong to their respective copyright and trademark holders.
+
+For inquiries or permission requests regarding original work, contact [sudhanshukr388@gmail.com](mailto:sudhanshukr388@gmail.com).
