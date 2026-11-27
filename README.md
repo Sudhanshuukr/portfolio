@@ -213,4 +213,4 @@ Third-party software, libraries, fonts, and trademarks referenced or utilized wi
 - **Typography:** Self-hosted web fonts ([Manrope](https://scripts.sil.org/OFL), [Inter](https://scripts.sil.org/OFL), and [Playfair Display](https://scripts.sil.org/OFL)) are licensed under the SIL Open Font License (OFL).
 - **Icons & Brand Marks:** Open-source utility icons are provided via Lucide (licensed under the [ISC License](https://github.com/lucide-icons/lucide/blob/main/LICENSE)). All external technology, platform, and company trademarks or logos (e.g., React, Next.js, Node.js, MongoDB, Netlify) belong to their respective copyright and trademark holders.
 
-For inquiries or permission requests regarding original work, contact [sudhanshukr388@gmail.com](mailto:sudhanshukr388@gmail.com)..
+For inquiries or permission requests regarding original work, contact [sudhanshukr388@gmail.com](mailto:sudhanshukr388@gmail.com).
